@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -22,81 +21,102 @@
         .contacts img { width: 24px; vertical-align: middle; margin-right: 10px; }
         .submit-btn { margin-top: 20px; padding: 10px 20px; background: #007BFF; color: white; border: none; border-radius: 5px; cursor: pointer; }
         .submit-btn:hover { background: #0056b3; }
+
+        /* Nuovo stile per header logo */
+        #header-logo {
+            display: flex;
+            justify-content: flex-start; /* sposta a sinistra */
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        #header-logo img {
+            width: 80px;
+            height: auto;
+        }
+        #header-logo div {
+            text-align: left;
+        }
     </style>
 </head>
 <body>
-<div class="container">
-         <div style="display: flex; justify-content: flex-end; align-items: center; gap: 15px; margin-bottom: 20px;">
-    <img src="assets/logo.png" alt="Logo SPEDIREVELOCE" style="width: 80px; height: auto;">
-    <div style="text-align: right;">
-        <h1 style="margin: 0; font-size: 24px; color: #222;">SPEDIREVELOCE</h1>
-        <p style="margin: 4px 0 0; font-size: 16px; color: #555;">Modulo Spedizione</p>
+    <div class="container">
+        <div id="header-logo">
+            <img src="assets/nuovo-logo.png" alt="Logo SPEDIREVELOCE">
+            <div>
+                <h1 style="margin: 0; font-size: 24px; color: #222;">SPEDIREVELOCE</h1>
+                <p style="margin: 4px 0 0; font-size: 16px; color: #555;">Modulo Spedizione</p>
+            </div>
+        </div>
+
+        <form action="https://formspree.io/f/mnqeqzzz" method="POST">
+            <div class="section">
+                <h2>Dati del Mittente</h2>
+                <label>Nome e Cognome / Ragione Sociale <input type="text" name="mittente_nome" required></label>
+                <label>Via/Piazza <input type="text" name="mittente_via" required></label>
+                <label>Numero civico <input type="text" name="mittente_numero" required></label>
+                <label>CAP <input type="text" name="mittente_cap" required></label>
+                <label>Città <input type="text" name="mittente_citta" required></label>
+                <label>Provincia <input type="text" name="mittente_provincia" required></label>
+                <label>Nazione <input type="text" name="mittente_nazione" required></label>
+                <label>Email <input type="email" name="mittente_email" required></label>
+                <label>Telefono / WhatsApp <input type="text" name="mittente_telefono" required></label>
+                <label>Codice Fiscale / P.IVA <input type="text" name="mittente_cf"></label>
+                <label>Note per il corriere <textarea name="mittente_note"></textarea></label>
+            </div>
+            <div class="section">
+                <h2>Dati del Destinatario</h2>
+                <label>Nome e Cognome / Ragione Sociale <input type="text" name="destinatario_nome" required></label>
+                <label>Via/Piazza <input type="text" name="destinatario_via" required></label>
+                <label>Numero civico <input type="text" name="destinatario_numero" required></label>
+                <label>CAP <input type="text" name="destinatario_cap" required></label>
+                <label>Città <input type="text" name="destinatario_citta" required></label>
+                <label>Provincia <input type="text" name="destinatario_provincia" required></label>
+                <label>Nazione <input type="text" name="destinatario_nazione" required></label>
+                <label>Email <input type="email" name="destinatario_email" required></label>
+                <label>Telefono / WhatsApp <input type="text" name="destinatario_telefono" required></label>
+                <label>Note per la consegna <textarea name="destinatario_note"></textarea></label>
+            </div>
+            <div class="section">
+                <h2>Termini e Condizioni</h2>
+                <p>
+                    Questo sito web è gestito da POSTAEXPRESS DI SOLAZZO MARCO. I tempi di consegna indicati sono stime e non costituiscono un impegno vincolante. POSTAEXPRESS non è obbligata ad assicurare la merce, salvo richiesta del mittente, e non è responsabile per azioni, omissioni o inadempimenti del vettore. Il cliente accetta di non esercitare azioni contro POSTAEXPRESS. La responsabilità per smarrimenti, danni o ritardi è limitata a 1€/kg. POSTAEXPRESS può acquistare spedizioni tramite piattaforme terze. L’imballaggio fornito è gratuito e senza garanzia.
+                </p>
+                <label class="checkbox">
+                    <input type="checkbox" name="accetto_condizioni" required> Accetto i termini e le condizioni
+                </label>
+            </div>
+            <div class="section tariffe">
+                <div>
+                    <h2>Tariffe Nazionali (SDA)</h2>
+                    <table>
+                        <tr><th>Peso</th><th>Prezzo</th></tr>
+                        <tr><td>0–10kg</td><td>10 €</td></tr>
+                        <tr><td>10–30kg</td><td>13.90 €</td></tr>
+                        <tr><td colspan="2">Misura max: somma lati 150cm</td></tr>
+                    </table>
+                </div>
+                <div>
+                    <h2>Tariffe Europa (UPS)</h2>
+                    <table>
+                        <tr><th>Peso</th><th>Prezzo</th></tr>
+                        <tr><td>0–10kg</td><td>30 €</td></tr>
+                        <tr><td>10–20kg</td><td>35 €</td></tr>
+                        <tr><td>20–30kg</td><td>40 €</td></tr>
+                        <tr><td colspan="2">Misura max: somma lati 150cm</td></tr>
+                    </table>
+                </div>
+            </div>
+            <div class="contacts">
+                <p><img src="email.png" alt="email icon"> spedireveloce2025@libero.it</p>
+                <p><img src="whatsapp.png" alt="whatsapp icon"> 3299836841</p>
+            </div>
+            <button class="submit-btn" type="submit">Invia Modulo</button>
+        </form>
     </div>
-</div>           
-    <form action="https://formspree.io/f/mnqeqzzz" method="POST">
-        <div class="section">
-            <h2>Dati del Mittente</h2>
-            <label>Nome e Cognome / Ragione Sociale <input type="text" name="mittente_nome" required></label>
-            <label>Via/Piazza <input type="text" name="mittente_via" required></label>
-            <label>Numero civico <input type="text" name="mittente_numero" required></label>
-            <label>CAP <input type="text" name="mittente_cap" required></label>
-            <label>Città <input type="text" name="mittente_citta" required></label>
-            <label>Provincia <input type="text" name="mittente_provincia" required></label>
-            <label>Nazione <input type="text" name="mittente_nazione" required></label>
-            <label>Email <input type="email" name="mittente_email" required></label>
-            <label>Telefono / WhatsApp <input type="text" name="mittente_telefono" required></label>
-            <label>Codice Fiscale / P.IVA <input type="text" name="mittente_cf"></label>
-            <label>Note per il corriere <textarea name="mittente_note"></textarea></label>
-        </div>
-        <div class="section">
-            <h2>Dati del Destinatario</h2>
-            <label>Nome e Cognome / Ragione Sociale <input type="text" name="destinatario_nome" required></label>
-            <label>Via/Piazza <input type="text" name="destinatario_via" required></label>
-            <label>Numero civico <input type="text" name="destinatario_numero" required></label>
-            <label>CAP <input type="text" name="destinatario_cap" required></label>
-            <label>Città <input type="text" name="destinatario_citta" required></label>
-            <label>Provincia <input type="text" name="destinatario_provincia" required></label>
-            <label>Nazione <input type="text" name="destinatario_nazione" required></label>
-            <label>Email <input type="email" name="destinatario_email" required></label>
-            <label>Telefono / WhatsApp <input type="text" name="destinatario_telefono" required></label>
-            <label>Note per la consegna <textarea name="destinatario_note"></textarea></label>
-        </div>
-        <div class="section">
-            <h2>Termini e Condizioni</h2>
-            <p>
-                Questo sito web è gestito da POSTAEXPRESS DI SOLAZZO MARCO. I tempi di consegna indicati sono stime e non costituiscono un impegno vincolante. POSTAEXPRESS non è obbligata ad assicurare la merce, salvo richiesta del mittente, e non è responsabile per azioni, omissioni o inadempimenti del vettore. Il cliente accetta di non esercitare azioni contro POSTAEXPRESS. La responsabilità per smarrimenti, danni o ritardi è limitata a 1€/kg. POSTAEXPRESS può acquistare spedizioni tramite piattaforme terze. L’imballaggio fornito è gratuito e senza garanzia.
-            </p>
-            <label class="checkbox">
-                <input type="checkbox" name="accetto_condizioni" required> Accetto i termini e le condizioni
-            </label>
-        </div>
-        <div class="section tariffe">
-            <div>
-                <h2>Tariffe Nazionali (SDA)</h2>
-                <table>
-                    <tr><th>Peso</th><th>Prezzo</th></tr>
-                    <tr><td>0–10kg</td><td>10 €</td></tr>
-                    <tr><td>10–30kg</td><td>13.90 €</td></tr>
-                    <tr><td colspan="2">Misura max: somma lati 150cm</td></tr>
-                </table>
-            </div>
-            <div>
-                <h2>Tariffe Europa (UPS)</h2>
-                <table>
-                    <tr><th>Peso</th><th>Prezzo</th></tr>
-                    <tr><td>0–10kg</td><td>30 €</td></tr>
-                    <tr><td>10–20kg</td><td>35 €</td></tr>
-                    <tr><td>20–30kg</td><td>40 €</td></tr>
-                    <tr><td colspan="2">Misura max: somma lati 150cm</td></tr>
-                </table>
-            </div>
-        </div>
-        <div class="contacts">
-            <p><img src="email.png" alt="email icon"> spedireveloce2025@libero.it</p>
-            <p><img src="whatsapp.png" alt="whatsapp icon"> 3299836841</p>
-        </div>
-        <button class="submit-btn" type="submit">Invia Modulo</button>
-    </form>
-</div>
 </body>
 </html>
+
+
+            
+
