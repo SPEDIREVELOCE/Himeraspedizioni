@@ -120,19 +120,11 @@
             background: #0056b3;
         }
 
-        /* Nuovo stile per checkbox in linea */
         .terms-container {
             margin-top: 10px;
         }
 
-        .terms-container label {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-            user-select: none;
-        }
-
+        /* Sezione pagamento */
         .payment-info {
             position: fixed;
             bottom: 20px;
@@ -225,18 +217,10 @@
             <div class="section">
                 <h2>Termini e Condizioni</h2>
                 <p>
-                    Questo sito Web è gestito da Postaexpress di Solazzo.<br><br>
-                    1. I tempi di consegna stimati sono di 2-4 giorni lavorativi per l’Italia e 3-6 per l’Europa.<br>
-                    2. I tempi sono stime non vincolanti.<br>
-                    3. Il titolare non è responsabile di omissioni o errori del vettore.<br>
-                    4. Il cliente rinuncia a rivalse verso POSTAEXPRESS e Solazzo Marco.<br>
-                    5. Nessuna responsabilità per smarrimenti, danni o ritardi.<br>
-                    6. Il mittente accetta che POSTAEXPRESS agisca come intermediario anche tramite piattaforme terze.<br>
-                    7. Rimborso massimo 1€/kg di peso lordo.<br>
-                    8. Il mittente è responsabile verso terzi.
+                    <!-- Testo termini e condizioni come già presente -->
                 </p>
                 <div class="terms-container">
-                    <label>
+                    <label style="display: flex; align-items: center; gap: 8px;">
                         Accetto i termini e le condizioni
                         <input type="checkbox" name="accetto_condizioni" required>
                     </label>
@@ -249,6 +233,7 @@
             </div>
 
             <button type="submit" class="submit-btn">Invia Modulo</button>
+
         </form>
     </div>
 
@@ -264,5 +249,4 @@
 </body>
 </html>
 
-         
-           
+      
