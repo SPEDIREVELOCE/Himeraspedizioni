@@ -1,19 +1,15 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>POSTAEXPRESS di Solazzo Marco</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
         body {
             font-family: Arial, sans-serif;
             padding: 20px;
             background: #f9f9f9;
             color: #333;
-            position: relative;
-            min-height: 100vh;
-            box-sizing: border-box;
-            padding-bottom: 140px;
         }
 
         h1, h2 {
@@ -53,15 +49,13 @@
             color: #555;
         }
 
-        .form-row {
-            display: flex;
-            gap: 30px;
-            flex-wrap: wrap;
+        .section {
+            margin-bottom: 30px;
         }
 
-        .form-column {
-            flex: 1;
-            min-width: 300px;
+        .section h2 {
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 5px;
         }
 
         label {
@@ -75,6 +69,22 @@
             margin-top: 5px;
             border-radius: 5px;
             border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        /* Contenitore affiancato per mittente e destinatario */
+        .form-side-by-side {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .form-side-by-side > div {
+            flex: 1 1 45%;
+            min-width: 300px;
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
             box-sizing: border-box;
         }
 
@@ -120,11 +130,19 @@
             background: #0056b3;
         }
 
+        /* Casella accetta termini: testo a sinistra, checkbox a destra */
         .terms-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
             margin-top: 10px;
         }
 
-        /* Sezione pagamento */
+        .terms-container label {
+            cursor: pointer;
+            user-select: none;
+        }
+
         .payment-info {
             position: fixed;
             bottom: 20px;
@@ -133,18 +151,17 @@
             color: white;
             padding: 15px 20px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.25);
-            max-width: 340px;
             font-size: 14px;
-            line-height: 1.5;
-            z-index: 1000;
+            max-width: 300px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            line-height: 1.4;
+            font-weight: 600;
             font-family: Arial, sans-serif;
-            white-space: pre-line;
         }
 
         .payment-info strong {
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             font-size: 16px;
         }
     </style>
@@ -152,7 +169,7 @@
 <body>
     <div class="container">
         <div id="header-logo">
-            <img src="logo.png" alt="Logo SPEDIREVELOCE">
+            <img src="logo.png" alt="Logo SPEDIREVELOCE" />
             <div>
                 <h1>SPEDIREVELOCE</h1>
                 <p>Modulo Spedizione</p>
@@ -160,35 +177,76 @@
         </div>
 
         <form action="https://formspree.io/f/mnqeqzzz" method="POST">
-
-            <div class="section form-row">
-                <div class="form-column">
+            <div class="form-side-by-side">
+                <div>
                     <h2>Dati del Mittente</h2>
-                    <label>Nome e Cognome / Ragione Sociale <input type="text" name="mittente_nome" required></label>
-                    <label>Via/Piazza <input type="text" name="mittente_via" required></label>
-                    <label>Numero civico <input type="text" name="mittente_numero" required></label>
-                    <label>CAP <input type="text" name="mittente_cap" required></label>
-                    <label>Città <input type="text" name="mittente_citta" required></label>
-                    <label>Provincia <input type="text" name="mittente_provincia" required></label>
-                    <label>Nazione <input type="text" name="mittente_nazione" required></label>
-                    <label>Email <input type="email" name="mittente_email" required></label>
-                    <label>Telefono / WhatsApp <input type="text" name="mittente_telefono" required></label>
-                    <label>Codice Fiscale / P.IVA <input type="text" name="mittente_cf"></label>
-                    <label>Note per il corriere <textarea name="mittente_note"></textarea></label>
+                    <label>Nome e Cognome / Ragione Sociale
+                        <input type="text" name="mittente_nome" required />
+                    </label>
+                    <label>Via/Piazza
+                        <input type="text" name="mittente_via" required />
+                    </label>
+                    <label>Numero civico
+                        <input type="text" name="mittente_numero" required />
+                    </label>
+                    <label>CAP
+                        <input type="text" name="mittente_cap" required />
+                    </label>
+                    <label>Città
+                        <input type="text" name="mittente_citta" required />
+                    </label>
+                    <label>Provincia
+                        <input type="text" name="mittente_provincia" required />
+                    </label>
+                    <label>Nazione
+                        <input type="text" name="mittente_nazione" required />
+                    </label>
+                    <label>Email
+                        <input type="email" name="mittente_email" required />
+                    </label>
+                    <label>Telefono / WhatsApp
+                        <input type="text" name="mittente_telefono" required />
+                    </label>
+                    <label>Codice Fiscale / P.IVA
+                        <input type="text" name="mittente_cf" />
+                    </label>
+                    <label>Note per il corriere
+                        <textarea name="mittente_note"></textarea>
+                    </label>
                 </div>
 
-                <div class="form-column">
+                <div>
                     <h2>Dati del Destinatario</h2>
-                    <label>Nome e Cognome / Ragione Sociale <input type="text" name="destinatario_nome" required></label>
-                    <label>Via/Piazza <input type="text" name="destinatario_via" required></label>
-                    <label>Numero civico <input type="text" name="destinatario_numero" required></label>
-                    <label>CAP <input type="text" name="destinatario_cap" required></label>
-                    <label>Città <input type="text" name="destinatario_citta" required></label>
-                    <label>Provincia <input type="text" name="destinatario_provincia" required></label>
-                    <label>Nazione <input type="text" name="destinatario_nazione" required></label>
-                    <label>Email <input type="email" name="destinatario_email" required></label>
-                    <label>Telefono / WhatsApp <input type="text" name="destinatario_telefono" required></label>
-                    <label>Note per la consegna <textarea name="destinatario_note"></textarea></label>
+                    <label>Nome e Cognome / Ragione Sociale
+                        <input type="text" name="destinatario_nome" required />
+                    </label>
+                    <label>Via/Piazza
+                        <input type="text" name="destinatario_via" required />
+                    </label>
+                    <label>Numero civico
+                        <input type="text" name="destinatario_numero" required />
+                    </label>
+                    <label>CAP
+                        <input type="text" name="destinatario_cap" required />
+                    </label>
+                    <label>Città
+                        <input type="text" name="destinatario_citta" required />
+                    </label>
+                    <label>Provincia
+                        <input type="text" name="destinatario_provincia" required />
+                    </label>
+                    <label>Nazione
+                        <input type="text" name="destinatario_nazione" required />
+                    </label>
+                    <label>Email
+                        <input type="email" name="destinatario_email" required />
+                    </label>
+                    <label>Telefono / WhatsApp
+                        <input type="text" name="destinatario_telefono" required />
+                    </label>
+                    <label>Note per la consegna
+                        <textarea name="destinatario_note"></textarea>
+                    </label>
                 </div>
             </div>
 
@@ -217,36 +275,44 @@
             <div class="section">
                 <h2>Termini e Condizioni</h2>
                 <p>
-                    <!-- Testo termini e condizioni come già presente -->
+                    Questo sito Web è gestito da Postaexpress di Solazzo.<br /><br />
+
+                    1. I tempi di consegna stimati sono di 2-4 giorni lavorativi dopo la partenza per le spedizioni in Italia e 3-6 giorni lavorativi dopo la partenza per le spedizioni in Europa.<br />
+                    2. I tempi di consegna indicati sono da intendersi come stime e non costituiscono un impegno vincolante.<br />
+                    3. La POSTAEXPRESS di Solazzo Marco e Solazzo Marco in qualità di titolare, non è responsabile né risponde in alcun modo per fatti, omissioni o inadempimenti del vettore, anche qualora il vettore sia stato scelto unilateralmente.<br />
+                    4. Il Cliente accetta di non esercitare, né consentire al destinatario di esercitare, alcuna azione, anche giudiziale, nei confronti della POSTAEXPRESS di Solazzo Marco, di Solazzo Marco in qualità di titolare, del corriere o di terzi.<br />
+                    5. La POSTAEXPRESS di Solazzo Marco e Solazzo Marco in qualità di titolare, non è in alcun modo responsabile e non risponde per smarrimento, danneggiamento, furto del contenuto, consegna errata, mancata consegna o consegna oltre i termini previsti.<br />
+                    6. Il mittente autorizza la POSTAEXPRESS di Solazzo Marco, in qualità di intermediario, ad acquistare, se necessario, spedizioni tramite piattaforme terze, anche in assenza di contratto diretto con i corrieri selezionati. Il mittente accetta che POSTAEXPRESS agisce esclusivamente come tramite per la gestione della spedizione.<br />
+                    7. Il rimborso per spedizioni danneggiate, smarrite, rubate, consegnate in modo errato o in ritardo viene calcolato in base al peso della merce, con una copertura pari a € 1,00 per ogni chilogrammo di peso lordo.<br />
+                    8. Il mittente della spedizione si assume ogni responsabilità nei confronti di qualunque terzo.
                 </p>
                 <div class="terms-container">
-                    <label style="display: flex; align-items: center; gap: 8px;">
-                        Accetto i termini e le condizioni
-                        <input type="checkbox" name="accetto_condizioni" required>
-                    </label>
+                    <label for="accetto_condizioni">Accetto i termini e le condizioni</label>
+                    <input type="checkbox" id="accetto_condizioni" name="accetto_condizioni" required />
                 </div>
             </div>
 
             <div class="contacts">
-                <p><img src="email.png" alt="email icon"> spedireveloce2025@libero.it</p>
-                <p><img src="whatsapp.png" alt="WhatsApp icon"> +39 329 983 6841</p>
+                <p><img src="email.png" alt="email icon" /> spedireveloce2025@libero.it</p>
+                <p><img src="whatsapp.png" alt="whatsapp icon" /> 3299836841</p>
             </div>
 
-            <button type="submit" class="submit-btn">Invia Modulo</button>
-
+            <button class="submit-btn" type="submit">Invia Modulo</button>
         </form>
     </div>
 
     <div class="payment-info" aria-label="Metodi di pagamento">
         <strong>Metodi di pagamento:</strong>
-        Postepay: 5333 1711 6485 4388<br>
-        Intestata a: Solazzo Marco<br>
-        Codice fiscale: SLZMRC88D03L112W<br><br>
-        Bonifico:<br>
-        IT40D0760104600000096256433<br>
+        Postepay: 5333 1711 6485 4388<br />
+        Intestata a: Solazzo Marco<br />
+        Codice fiscale: SLZMRC88D03L112W<br /><br />
+        Bonifico:<br />
+        IT40D0760104600000096256433<br />
         Intestato a: Postaexpress di Solazzo
     </div>
 </body>
 </html>
 
+      
+            
       
