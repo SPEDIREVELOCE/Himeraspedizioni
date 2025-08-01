@@ -13,7 +13,7 @@
             position: relative;
             min-height: 100vh;
             box-sizing: border-box;
-            padding-bottom: 140px; /* spazio per il footer pagamento */
+            padding-bottom: 140px;
         }
 
         h1, h2 {
@@ -78,13 +78,6 @@
             box-sizing: border-box;
         }
 
-        .checkbox {
-            margin-top: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
         .tariffe {
             display: flex;
             gap: 20px;
@@ -127,15 +120,17 @@
             background: #0056b3;
         }
 
+        /* Nuovo stile per checkbox in linea */
         .terms-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
             margin-top: 10px;
         }
 
-        .terms-container input[type="checkbox"] {
-            margin: 0;
+        .terms-container label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            user-select: none;
         }
 
         .payment-info {
@@ -231,19 +226,20 @@
                 <h2>Termini e Condizioni</h2>
                 <p>
                     Questo sito Web è gestito da Postaexpress di Solazzo.<br><br>
-
-                    1. I tempi di consegna stimati sono di 2-4 giorni lavorativi dopo la partenza per le spedizioni in Italia e 3-6 giorni lavorativi dopo la partenza per le spedizioni in Europa.<br>
-                    2. I tempi di consegna indicati sono da intendersi come stime e non costituiscono un impegno vincolante.<br>
-                    3. La POSTAEXPRESS di Solazzo Marco e Solazzo Marco in qualità di titolare, non è responsabile né risponde in alcun modo per fatti, omissioni o inadempimenti del vettore.<br>
-                    4. Il Cliente accetta di non esercitare, né consentire al destinatario di esercitare, alcuna azione nei confronti della POSTAEXPRESS di Solazzo Marco.<br>
-                    5. La POSTAEXPRESS di Solazzo Marco non è responsabile per smarrimento, danneggiamento, furto, consegna errata, mancata consegna o ritardi.<br>
-                    6. Il mittente autorizza POSTAEXPRESS a utilizzare piattaforme terze per la spedizione anche in assenza di contratto diretto.<br>
-                    7. Rimborso previsto: € 1,00 per ogni kg di peso lordo per eventuali problemi.<br>
-                    8. Il mittente si assume ogni responsabilità nei confronti di qualunque terzo.
+                    1. I tempi di consegna stimati sono di 2-4 giorni lavorativi per l’Italia e 3-6 per l’Europa.<br>
+                    2. I tempi sono stime non vincolanti.<br>
+                    3. Il titolare non è responsabile di omissioni o errori del vettore.<br>
+                    4. Il cliente rinuncia a rivalse verso POSTAEXPRESS e Solazzo Marco.<br>
+                    5. Nessuna responsabilità per smarrimenti, danni o ritardi.<br>
+                    6. Il mittente accetta che POSTAEXPRESS agisca come intermediario anche tramite piattaforme terze.<br>
+                    7. Rimborso massimo 1€/kg di peso lordo.<br>
+                    8. Il mittente è responsabile verso terzi.
                 </p>
                 <div class="terms-container">
-                    <label for="accetto_condizioni">Accetto i termini e le condizioni</label>
-                    <input type="checkbox" id="accetto_condizioni" name="accetto_condizioni" required>
+                    <label>
+                        Accetto i termini e le condizioni
+                        <input type="checkbox" name="accetto_condizioni" required>
+                    </label>
                 </div>
             </div>
 
@@ -253,7 +249,6 @@
             </div>
 
             <button type="submit" class="submit-btn">Invia Modulo</button>
-
         </form>
     </div>
 
@@ -269,3 +264,5 @@
 </body>
 </html>
 
+         
+           
