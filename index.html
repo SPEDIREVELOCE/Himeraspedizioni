@@ -186,22 +186,23 @@
         }
 
         /* Payment info fixed at bottom right */
-        .payment-info {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #007BFF;
-            color: white;
-            padding: 15px 20px;
-            border-radius: 10px;
-            font-size: 14px;
-            max-width: 300px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.2);
-            line-height: 1.4;
-            font-weight: 600;
-            font-family: Arial, sans-serif;
-            margin-right: 320px; /* per non sovrapporsi con assistenza */
-        }
+       .payment-info {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #007BFF;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    max-width: 300px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    line-height: 1.4;
+    font-weight: 600;
+    font-family: Arial, sans-serif;
+    z-index: 9999;
+}
+
 
         .payment-info strong {
             display: block;
@@ -358,12 +359,6 @@
         IT40D0760104600000096256433<br />
         Intestato a: Postaexpress di Solazzo
     </div>
-</body>
-</html>
-<!-- Blocco pagamenti -->
-<div class="payment-info">
-    <!-- contenuto -->
-</div>
 
       
        
