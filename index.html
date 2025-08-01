@@ -10,6 +10,10 @@
             padding: 20px;
             background: #f9f9f9;
             color: #333;
+            position: relative;
+            min-height: 100vh;
+            box-sizing: border-box;
+            padding-bottom: 140px; /* spazio per il footer pagamento */
         }
 
         h1, h2 {
@@ -49,13 +53,16 @@
             color: #555;
         }
 
-        .section {
-            margin-bottom: 30px;
+        /* Nuovo contenitore per affiancare mittente e destinatario */
+        .form-row {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
         }
 
-        .section h2 {
-            border-bottom: 2px solid #ccc;
-            padding-bottom: 5px;
+        .form-column {
+            flex: 1;
+            min-width: 300px;
         }
 
         label {
@@ -69,10 +76,14 @@
             margin-top: 5px;
             border-radius: 5px;
             border: 1px solid #ccc;
+            box-sizing: border-box;
         }
 
         .checkbox {
             margin-top: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .tariffe {
@@ -116,6 +127,42 @@
         .submit-btn:hover {
             background: #0056b3;
         }
+
+        /* Allineamento checkbox e testo termini */
+        .terms-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .terms-container input[type="checkbox"] {
+            margin: 0;
+        }
+
+        /* Sezione pagamento in basso a destra */
+        .payment-info {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #007BFF;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.25);
+            max-width: 340px;
+            font-size: 14px;
+            line-height: 1.5;
+            z-index: 1000;
+            font-family: Arial, sans-serif;
+            white-space: pre-line;
+        }
+
+        .payment-info strong {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
     </style>
 </head>
 <body>
@@ -129,33 +176,36 @@
         </div>
 
         <form action="https://formspree.io/f/mnqeqzzz" method="POST">
-            <div class="section">
-                <h2>Dati del Mittente</h2>
-                <label>Nome e Cognome / Ragione Sociale <input type="text" name="mittente_nome" required></label>
-                <label>Via/Piazza <input type="text" name="mittente_via" required></label>
-                <label>Numero civico <input type="text" name="mittente_numero" required></label>
-                <label>CAP <input type="text" name="mittente_cap" required></label>
-                <label>Città <input type="text" name="mittente_citta" required></label>
-                <label>Provincia <input type="text" name="mittente_provincia" required></label>
-                <label>Nazione <input type="text" name="mittente_nazione" required></label>
-                <label>Email <input type="email" name="mittente_email" required></label>
-                <label>Telefono / WhatsApp <input type="text" name="mittente_telefono" required></label>
-                <label>Codice Fiscale / P.IVA <input type="text" name="mittente_cf"></label>
-                <label>Note per il corriere <textarea name="mittente_note"></textarea></label>
-            </div>
 
-            <div class="section">
-                <h2>Dati del Destinatario</h2>
-                <label>Nome e Cognome / Ragione Sociale <input type="text" name="destinatario_nome" required></label>
-                <label>Via/Piazza <input type="text" name="destinatario_via" required></label>
-                <label>Numero civico <input type="text" name="destinatario_numero" required></label>
-                <label>CAP <input type="text" name="destinatario_cap" required></label>
-                <label>Città <input type="text" name="destinatario_citta" required></label>
-                <label>Provincia <input type="text" name="destinatario_provincia" required></label>
-                <label>Nazione <input type="text" name="destinatario_nazione" required></label>
-                <label>Email <input type="email" name="destinatario_email" required></label>
-                <label>Telefono / WhatsApp <input type="text" name="destinatario_telefono" required></label>
-                <label>Note per la consegna <textarea name="destinatario_note"></textarea></label>
+            <div class="section form-row">
+                <div class="form-column">
+                    <h2>Dati del Mittente</h2>
+                    <label>Nome e Cognome / Ragione Sociale <input type="text" name="mittente_nome" required></label>
+                    <label>Via/Piazza <input type="text" name="mittente_via" required></label>
+                    <label>Numero civico <input type="text" name="mittente_numero" required></label>
+                    <label>CAP <input type="text" name="mittente_cap" required></label>
+                    <label>Città <input type="text" name="mittente_citta" required></label>
+                    <label>Provincia <input type="text" name="mittente_provincia" required></label>
+                    <label>Nazione <input type="text" name="mittente_nazione" required></label>
+                    <label>Email <input type="email" name="mittente_email" required></label>
+                    <label>Telefono / WhatsApp <input type="text" name="mittente_telefono" required></label>
+                    <label>Codice Fiscale / P.IVA <input type="text" name="mittente_cf"></label>
+                    <label>Note per il corriere <textarea name="mittente_note"></textarea></label>
+                </div>
+
+                <div class="form-column">
+                    <h2>Dati del Destinatario</h2>
+                    <label>Nome e Cognome / Ragione Sociale <input type="text" name="destinatario_nome" required></label>
+                    <label>Via/Piazza <input type="text" name="destinatario_via" required></label>
+                    <label>Numero civico <input type="text" name="destinatario_numero" required></label>
+                    <label>CAP <input type="text" name="destinatario_cap" required></label>
+                    <label>Città <input type="text" name="destinatario_citta" required></label>
+                    <label>Provincia <input type="text" name="destinatario_provincia" required></label>
+                    <label>Nazione <input type="text" name="destinatario_nazione" required></label>
+                    <label>Email <input type="email" name="destinatario_email" required></label>
+                    <label>Telefono / WhatsApp <input type="text" name="destinatario_telefono" required></label>
+                    <label>Note per la consegna <textarea name="destinatario_note"></textarea></label>
+                </div>
             </div>
 
             <div class="section tariffe">
@@ -194,22 +244,14 @@
                     7. Il rimborso per spedizioni danneggiate, smarrite, rubate, consegnate in modo errato o in ritardo viene calcolato in base al peso della merce, con una copertura pari a € 1,00 per ogni chilogrammo di peso lordo.<br>
                     8. Il mittente della spedizione si assume ogni responsabilità nei confronti di qualunque terzo.
                 </p>
-               <div class="checkbox">
-  <label for="accetto">
-    <input type="checkbox" id="accetto" name="accetto_condizioni" required>
-    Accetto i termini e le condizioni
-  </label>
-</div>
-
+                <div class="terms-container">
+                    <input type="checkbox" name="accetto_condizioni" required>
+                    <label for="accetto_condizioni">Accetto i termini e le condizioni</label>
+                </div>
+            </div>
 
             <div class="contacts">
-    <p><img src="email.png" alt="email icon"> spedireveloce2025@libero.it</p>
-    <p><img src="whatsapp.png" alt="whatsapp icon"> 3299836841</p>
-</div>
+                <p><img src="email.png" alt="email icon"> spedireveloce2025@libero.it</p>
+                <p
 
-
-            <button class="submit-btn" type="submit">Invia Modulo</button>
-        </form>
-    </div>
-</body>
-</html>
+          
