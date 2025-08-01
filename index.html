@@ -1,116 +1,383 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Calcola Preventivo Spedizione</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      background: #f4f4f4;
-    }
-    h1 {
-      text-align: center;
-    }
-    form {
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-      max-width: 800px;
-      margin: auto;
-    }
-    .section {
-      margin-bottom: 20px;
-    }
-    label {
-      display: block;
-      margin: 10px 0 5px;
-    }
-    input, select {
-      width: 100%;
-      padding: 8px;
-      margin-bottom: 10px;
-    }
-    .options {
-      display: flex;
-      gap: 10px;
-    }
-    .options input {
-      width: auto;
-      margin-right: 5px;
-    }
-    .buttons {
-      text-align: center;
-    }
-    button {
-      padding: 10px 20px;
-      margin: 10px;
-    }
-    .output {
-      text-align: center;
-      font-size: 1.2em;
-      margin-top: 20px;
-      color: green;
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <title>POSTAEXPRESS di Solazzo Marco</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f9f9f9;
+            color: #333;
+        }
+
+        h1, h2 {
+            color: #222;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        #header-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        #header-logo img {
+            width: 80px;
+            height: auto;
+        }
+
+        #header-logo h1 {
+            margin: 0;
+            font-size: 24px;
+            color: #007BFF;
+        }
+
+        #header-logo p {
+            margin: 4px 0 0;
+            font-size: 16px;
+            color: #555;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section h2 {
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 5px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        /* Contenitore affiancato per mittente e destinatario */
+        .form-side-by-side {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .form-side-by-side > div {
+            flex: 1 1 45%;
+            min-width: 300px;
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+
+        .tariffe {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        th, td {
+            border: 1px solid #aaa;
+            padding: 8px;
+            text-align: center;
+        }
+
+        .submit-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background: #0056b3;
+        }
+
+        /* Casella accetta termini: testo a sinistra, checkbox a destra */
+        .terms-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .terms-container label {
+            cursor: pointer;
+            user-select: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        /* Stile per il dettaglio termini e condizioni nascosto */
+        #termini-content {
+            display: none;
+            background: #e9ecef;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            max-height: 300px;
+            overflow-y: auto;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        /* Mostra i termini se checkbox selezionato */
+        #accetto_condizioni:checked ~ #termini-content {
+            display: block;
+        }
+
+        /* Contenitore assistenza in alto a destra, fisso */
+        .assistance-fixed {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #007BFF;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            font-size: 14px;
+            max-width: 280px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            font-weight: 600;
+            font-family: Arial, sans-serif;
+            z-index: 10000;
+        }
+
+        .assistance-fixed p {
+            margin: 6px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .assistance-fixed img {
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+        }
+
+        /* Payment info fixed at bottom right */
+       .payment-info {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #007BFF;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    max-width: 300px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    line-height: 1.4;
+    font-weight: 600;
+    font-family: Arial, sans-serif;
+    z-index: 9999;
+}
+
+
+        .payment-info strong {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+    </style>
 </head>
+    <script>
+    // Mostra automaticamente i termini al clic sulla checkbox
+    document.addEventListener("DOMContentLoaded", function () {
+        const checkbox = document.getElementById("accetto_condizioni");
+        const termini = document.getElementById("termini-content");
+
+        checkbox.addEventListener("change", function () {
+            if (checkbox.checked) {
+                termini.style.display = "block";
+            } else {
+                termini.style.display = "none";
+            }
+        });
+    });
+</script>
+
 <body>
-  <h1>Calcolo Preventivo Spedizione</h1>
-  <form id="quoteForm">
-    <div class="section">
-      <h2>1. Indirizzi</h2>
-      <label>Località Partenza</label>
-      <input type="text" name="partenza" required />
+    <!-- Assistenza e informazioni fissa in alto a destra -->
+    <div class="assistance-fixed" style="top: auto; bottom: 20px; right: auto; left: 20px;" aria-label="Assistenza e Informazioni">
+    <p><strong>Assistenza</strong></p>
+    <p><img src="email.png" alt="Icona email" /> spedireveloce2025@libero.it</p>
+    <p><img src="whatsapp.png" alt="Icona WhatsApp" /> +39 329 983 6841</p>
+</div>
 
-      <label>CAP / Comune Partenza</label>
-      <input type="text" name="cap_partenza" required />
 
-      <label>Località Destinazione</label>
-      <input type="text" name="arrivo" required />
+    <div class="container">
+        <div id="header-logo">
+            <img src="logo.png" alt="Logo SPEDIREVELOCE" />
+            <div>
+                <h1>SPEDIREVELOCE</h1>
+                <p>Modulo Spedizione</p>
+            </div>
+        </div>
 
-      <label>CAP / Comune Arrivo</label>
-      <input type="text" name="cap_arrivo" required />
+        <form action="https://formspree.io/f/mnqeqzzz" method="POST">
+            <div class="form-side-by-side">
+                <div>
+                    <h2>Dati del Mittente</h2>
+                    <label>Nome e Cognome / Ragione Sociale
+                        <input type="text" name="mittente_nome" required />
+                    </label>
+                    <label>Via/Piazza
+                        <input type="text" name="mittente_via" required />
+                    </label>
+                    <label>Numero civico
+                        <input type="text" name="mittente_numero" required />
+                    </label>
+                    <label>CAP
+                        <input type="text" name="mittente_cap" required />
+                    </label>
+                    <label>Città
+                        <input type="text" name="mittente_citta" required />
+                    </label>
+                    <label>Provincia
+                        <input type="text" name="mittente_provincia" required />
+                    </label>
+                    <label>Nazione
+                        <input type="text" name="mittente_nazione" required />
+                    </label>
+                    <label>Email
+                        <input type="email" name="mittente_email" required />
+                    </label>
+                    <label>Telefono / WhatsApp
+                        <input type="text" name="mittente_telefono" required />
+                    </label>
+                    <label>Codice Fiscale / P.IVA
+                        <input type="text" name="mittente_cf" />
+                    </label>
+                    <label>Note per il corriere
+                        <textarea name="mittente_note"></textarea>
+                    </label>
+                </div>
+
+                <div>
+                    <h2>Dati del Destinatario</h2>
+                    <label>Nome e Cognome / Ragione Sociale
+                        <input type="text" name="destinatario_nome" required />
+                    </label>
+                    <label>Via/Piazza
+                        <input type="text" name="destinatario_via" required />
+                    </label>
+                    <label>Numero civico
+                        <input type="text" name="destinatario_numero" required />
+                    </label>
+                    <label>CAP
+                        <input type="text" name="destinatario_cap" required />
+                    </label>
+                    <label>Città
+                        <input type="text" name="destinatario_citta" required />
+                    </label>
+                    <label>Provincia
+                        <input type="text" name="destinatario_provincia" required />
+                    </label>
+                    <label>Nazione
+                        <input type="text" name="destinatario_nazione" required />
+                    </label>
+                    <label>Email
+                        <input type="email" name="destinatario_email" required />
+                    </label>
+                    <label>Telefono / WhatsApp
+                        <input type="text" name="destinatario_telefono" required />
+                    </label>
+                    <label>Note per la consegna
+                        <textarea name="destinatario_note"></textarea>
+                    </label>
+                </div>
+            </div>
+
+            <div class="section tariffe">
+                <div>
+                    <h2>Tariffe Nazionali (SDA)</h2>
+                    <table>
+                        <tr><th>Peso</th><th>Prezzo</th></tr>
+                        <tr><td>0–10kg</td><td>10 €</td></tr>
+                        <tr><td>10–30kg</td><td>13.90 €</td></tr>
+                        <tr><td colspan="2">Misura max: Somma di altezza + larghezza + lunghezza massimo 150 cm</td></tr>
+                    </table>
+                </div>
+                <div>
+                    <h2>Tariffe Europa (UPS)</h2>
+                    <table>
+                        <tr><th>Peso</th><th>Prezzo</th></tr>
+                        <tr><td>0–10kg</td><td>30 €</td></tr>
+                        <tr><td>10–20kg</td><td>35 €</td></tr>
+                        <tr><td>20–30kg</td><td>40 €</td></tr>
+                        <tr><td colspan="2">Misura max: Somma di altezza + larghezza + lunghezza massimo 150 cm</td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Termini e Condizioni</h2>
+                <div class="terms-container">
+                    <label for="accetto_condizioni">
+                        <input type="checkbox" id="accetto_condizioni" name="accetto_condizioni" required />
+                        Accetto i termini e le condizioni
+                    </label>
+                </div>
+                <div id="termini-content" aria-live="polite">
+                    <p>
+                        Questo sito Web è gestito da Postaexpress di Solazzo.<br /><br />
+                        1. I tempi di consegna stimati sono di 2-4 giorni lavorativi dopo la partenza per le spedizioni in Italia e 3-6 giorni lavorativi dopo la partenza per le spedizioni in Europa.<br />
+                        2. I tempi di consegna indicati sono da intendersi come stime e non costituiscono un impegno vincolante.<br />
+                        3. La POSTAEXPRESS di Solazzo Marco e Solazzo Marco in qualità di titolare, non è responsabile né risponde in alcun modo per fatti, omissioni o inadempimenti del vettore, anche qualora il vettore sia stato scelto unilateralmente.<br />
+                        4. Il Cliente si impegna espressamente a non intraprendere, né a consentire al destinatario o a terzi di intraprendere, qualsiasi azione legale, giudiziale o extragiudiziale, nei confronti di POSTAEXPRESS di Solazzo Marco, di Solazzo Marco in qualità di titolare, nonché di corrieri, vettori o di terzi comunque coinvolti nella gestione e nell’esecuzione della spedizione, rinunciando sin d’ora a qualsiasi pretesa o rivalsa connessa al servizio fornito.<br />
+                        5.POSTAEXPRESS di Solazzo Marco e Solazzo Marco, in qualità di titolare, declinano ogni responsabilità e non assumono alcun onere per smarrimento, danneggiamento, furto del contenuto, consegna errata, mancata consegna o consegna oltre i termini stabiliti.<br />
+                        6.Il mittente conferisce espressa autorizzazione a POSTAEXPRESS di Solazzo Marco, in qualità di intermediario, ad effettuare, ove necessario, l’acquisto di servizi di spedizione tramite piattaforme di terzi, anche in assenza di rapporto contrattuale diretto con i corrieri selezionati. Il mittente prende atto e accetta che POSTAEXPRESS opera unicamente quale tramite per la gestione della spedizione, senza assumere responsabilità dirette nei confronti del corriere o di terzi.<br />
+                        7. Il rimborso per spedizioni danneggiate, smarrite, rubate, consegnate in modo errato o in ritardo viene calcolato in base al peso della merce, con una copertura pari a € 1,00 per ogni chilogrammo di peso lordo.<br />
+                        8. Il mittente della spedizione si assume ogni responsabilità nei confronti di qualunque terzo.
+                    </p>
+                </div>
+                <button type="submit" class="submit-btn">Invia Modulo</button>
+            </div>
+        </form>
     </div>
 
-    <div class="section">
-      <h2>2. Cosa vuoi spedire?</h2>
-      <div class="options">
-        <label><input type="radio" name="tipo" value="pacchi" checked /> Pacchi 📦</label>
-        <label><input type="radio" name="tipo" value="documenti" /> Documenti ✉</label>
-        <label><input type="radio" name="tipo" value="pallet" /> Pallet 🏗</label>
-      </div>
+    <div class="payment-info" aria-label="Metodi di pagamento">
+        <strong>Metodi di pagamento:</strong>
+        Postepay: 5333 1711 6485 4388<br />
+        Intestata a: Solazzo Marco<br />
+        Codice fiscale: SLZMRC88D03L112W<br /><br />
+        Bonifico:<br />
+        IT40D0760104600000096256433<br />
+        Intestato a: Postaexpress di Solazzo
     </div>
 
-    <div class="section">
-      <h2>3. Servizi Aggiuntivi</h2>
-      <label><input type="checkbox" name="contrassegno" value="true" /> Contrassegno</label>
-      <label><input type="checkbox" name="assicurazione" value="true" /> Assicurazione</label>
-    </div>
-
-    <div class="buttons">
-      <button type="button" onclick="calcolaPreventivo()">Calcola Preventivo</button>
-      <button type="reset">Pulisci Preventivo</button>
-    </div>
-
-    <div id="output" class="output"></div>
-  </form>
-
-  <script>
-    function calcolaPreventivo() {
-      const tipo = document.querySelector('input[name="tipo"]:checked').value;
-      const contrassegno = document.querySelector('input[name="contrassegno"]').checked;
-      const assicurazione = document.querySelector('input[name="assicurazione"]').checked;
-
-      let costo = 10; // base
-      if (tipo === 'documenti') costo += 5;
-      if (tipo === 'pallet') costo += 15;
-      if (contrassegno) costo += 7;
-      if (assicurazione) costo += 10;
-
-      document.getElementById('output').innerText = `Preventivo stimato: € ${costo.toFixed(2)}`;
-    }
-  </script>
-</body>
-</html>
-  
+      
+       
+       
+      
