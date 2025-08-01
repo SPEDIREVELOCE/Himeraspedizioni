@@ -297,7 +297,30 @@
             </div>
 
            
-    <style>
+   <style>
+  .payment-info {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #007BFF;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.25);
+    max-width: 340px;
+    font-size: 14px;
+    line-height: 1.5;
+    z-index: 1000;
+    font-family: Arial, sans-serif;
+    white-space: pre-line;
+  }
+
+  .payment-info strong {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+
   .assistance-box {
     position: fixed;
     bottom: 20px;
@@ -312,43 +335,38 @@
     font-size: 14px;
     z-index: 1000;
   }
+
   .assistance-box strong {
     display: block;
     margin-bottom: 10px;
     font-size: 16px;
   }
+
   .assistance-box p {
     margin: 6px 0;
     display: flex;
     align-items: center;
     gap: 8px;
   }
+
   .assistance-box img {
     width: 20px;
     height: 20px;
   }
 </style>
 
-<div class="assistance-box" role="region" aria-label="Per assistenza e informazioni">
-  <strong>Per assistenza e informazioni</strong>
-  <p><img src="email.png" alt="Icona email" /> spedireveloce2025@libero.it</p>
-  <p><img src="whatsapp.png" alt="Icona WhatsApp" /> +39 329 983 6841</p>
+<div class="payment-info" aria-label="Metodi di pagamento">
+  <strong>Metodi di pagamento:</strong>
+  Postepay: 5333 1711 6485 4388<br>
+  Intestata a: Solazzo Marco<br>
+  Codice fiscale: SLZMRC88D03L112W<br><br>
+  Bonifico:<br>
+  IT40D0760104600000096256433<br>
+  Intestato a: Postaexpress di Solazzo
 </div>
 
-      
-    <div class="payment-info" aria-label="Metodi di pagamento">
-        <strong>Metodi di pagamento:</strong>
-        Postepay: 5333 1711 6485 4388<br />
-        Intestata a: Solazzo Marco<br />
-        Codice fiscale: SLZMRC88D03L112W<br /><br />
-        Bonifico:<br />
-        IT40D0760104600000096256433<br />
-        Intestato a: Postaexpress di Solazzo
-    </div>
-</body>
-</html>
-
-      
-            
-      
-      
+<div class="assistance-box" role="region" aria-label="Per assistenza e informazioni">
+  <strong>Per assistenza e informazioni</strong>
+  <p><img src="email-icon.png" alt="Icona email" /> spedireveloce2025@libero.it</p>
+  <p><img src="whatsapp-icon.png" alt="Icona WhatsApp" /> +39 329 983 6841</p>
+</div>
