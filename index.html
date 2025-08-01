@@ -53,6 +53,11 @@
             margin-bottom: 30px;
         }
 
+        .section h2 {
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 5px;
+        }
+
         label {
             display: block;
             margin-top: 10px;
@@ -101,16 +106,6 @@
             text-align: center;
         }
 
-        .contacts {
-            margin-top: 20px;
-        }
-
-        .contacts img {
-            width: 24px;
-            vertical-align: middle;
-            margin-right: 10px;
-        }
-
         .submit-btn {
             margin-top: 20px;
             padding: 10px 20px;
@@ -125,12 +120,12 @@
             background: #0056b3;
         }
 
-        /* Checkbox e link per i termini */
+        /* Casella accetta termini: testo a sinistra, checkbox a destra */
         .terms-container {
-            margin-top: 10px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
+            margin-top: 10px;
         }
 
         .terms-container label {
@@ -139,56 +134,58 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            flex-wrap: wrap;
         }
 
-        .terms-link {
-            color: #007BFF;
-            text-decoration: underline;
-            cursor: pointer;
-            font-weight: 600;
-        }
-
-        /* Stile modale */
-        .modal {
-            display: none; /* nascosto di default */
-            position: fixed;
-            z-index: 9999;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.5);
-            font-family: Arial, sans-serif;
-        }
-
-        .modal-content {
-            background-color: #fff;
-            margin: 50px auto;
-            padding: 20px 30px;
-            border-radius: 10px;
-            max-width: 700px;
-            max-height: 80vh;
+        /* Stile per il dettaglio termini e condizioni nascosto */
+        #termini-content {
+            display: none;
+            background: #e9ecef;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            max-height: 300px;
             overflow-y: auto;
-            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+            font-size: 14px;
+            line-height: 1.4;
         }
 
-        .modal-content h2 {
-            margin-top: 0;
+        /* Mostra i termini se checkbox selezionato */
+        #accetto_condizioni:checked ~ #termini-content {
+            display: block;
         }
 
-        .close-modal {
-            float: right;
-            font-size: 24px;
-            font-weight: bold;
-            cursor: pointer;
-            color: #aaa;
+        /* Contenitore assistenza in alto a destra, fisso */
+        .assistance-fixed {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #007BFF;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            font-size: 14px;
+            max-width: 280px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            font-weight: 600;
+            font-family: Arial, sans-serif;
+            z-index: 10000;
         }
 
-        .close-modal:hover {
-            color: #000;
+        .assistance-fixed p {
+            margin: 6px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
+        .assistance-fixed img {
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+        }
+
+        /* Payment info fixed at bottom right */
         .payment-info {
             position: fixed;
             bottom: 20px;
@@ -203,6 +200,7 @@
             line-height: 1.4;
             font-weight: 600;
             font-family: Arial, sans-serif;
+            margin-right: 320px; /* per non sovrapporsi con assistenza */
         }
 
         .payment-info strong {
@@ -213,6 +211,13 @@
     </style>
 </head>
 <body>
+    <!-- Assistenza e informazioni fissa in alto a destra -->
+    <div class="assistance-fixed" aria-label="Assistenza e Informazioni">
+        <p><strong>Per assistenza e informazioni</strong></p>
+        <p><img src="email.png" alt="Icona email" /> spedireveloce2025@libero.it</p>
+        <p><img src="whatsapp.png" alt="Icona WhatsApp" /> +39 329 983 6841</p>
+    </div>
+
     <div class="container">
         <div id="header-logo">
             <img src="logo.png" alt="Logo SPEDIREVELOCE" />
@@ -320,24 +325,28 @@
 
             <div class="section">
                 <h2>Termini e Condizioni</h2>
-
                 <div class="terms-container">
                     <label for="accetto_condizioni">
                         <input type="checkbox" id="accetto_condizioni" name="accetto_condizioni" required />
-                        Accetto i <span class="terms-link" id="openTerms">termini e le condizioni</span>
+                        Accetto i termini e le condizioni
                     </label>
                 </div>
-
+                <div id="termini-content" aria-live="polite">
+                    <p>
+                        Questo sito Web è gestito da Postaexpress di Solazzo.<br /><br />
+                        1. I tempi di consegna stimati sono di 2-4 giorni lavorativi dopo la partenza per le spedizioni in Italia e 3-6 giorni lavorativi dopo la partenza per le spedizioni in Europa.<br />
+                        2. I tempi di consegna indicati sono da intendersi come stime e non costituiscono un impegno vincolante.<br />
+                        3. La POSTAEXPRESS di Solazzo Marco e Solazzo Marco in qualità di titolare, non è responsabile né risponde in alcun modo per fatti, omissioni o inadempimenti del vettore, anche qualora il vettore sia stato scelto unilateralmente.<br />
+                        4. Il Cliente accetta di non esercitare, né consentire al destinatario di esercitare, alcuna azione, anche giudiziale, nei confronti della POSTAEXPRESS di Solazzo Marco, di Solazzo Marco in qualità di titolare, del corriere o di terzi.<br />
+                        5. La POSTAEXPRESS di Solazzo Marco e Solazzo Marco in qualità di titolare, non è in alcun modo responsabile e non risponde per smarrimento, danneggiamento, furto del contenuto, consegna errata, mancata consegna o consegna oltre i termini previsti.<br />
+                        6. Il mittente autorizza la POSTAEXPRESS di Solazzo Marco, in qualità di intermediario, ad acquistare, se necessario, spedizioni tramite piattaforme terze, anche in assenza di contratto diretto con i corrieri selezionati. Il mittente accetta che POSTAEXPRESS agisce esclusivamente come tramite per la gestione della spedizione.<br />
+                        7. Il rimborso per spedizioni danneggiate, smarrite, rubate, consegnate in modo errato o in ritardo viene calcolato in base al peso della merce, con una copertura pari a € 1,00 per ogni chilogrammo di peso lordo.<br />
+                        8. Il mittente della spedizione si assume ogni responsabilità nei confronti di qualunque terzo.
+                    </p>
+                </div>
                 <button type="submit" class="submit-btn">Invia Modulo</button>
             </div>
         </form>
-
-        <p><strong>Per assistenza e informazioni</strong></p>
-    </div> 
-
-    <div class="contacts">
-        <p><img src="email.png" alt="email icon"> spedireveloce2025@libero.it</p>
-        <p><img src="whatsapp.png" alt="WhatsApp icon"> +39 329 983 6841</p>
     </div>
 
     <div class="payment-info" aria-label="Metodi di pagamento">
@@ -349,61 +358,11 @@
         IT40D0760104600000096256433<br />
         Intestato a: Postaexpress di Solazzo
     </div>
-
-    <!-- Modale Termini e Condizioni -->
-    <div id="termsModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="termsTitle" aria-describedby="termsDesc">
-        <div class="modal-content">
-            <span class="close-modal" id="closeTerms" aria-label="Chiudi">&times;</span>
-            <h2 id="termsTitle">Termini e Condizioni</h2>
-            <div id="termsDesc">
-                <p>
-                    Questo sito Web è gestito da Postaexpress di Solazzo.<br /><br />
-
-                    1. I tempi di consegna stimati sono di 2-4 giorni lavorativi dopo la partenza per le spedizioni in Italia e 3-6 giorni lavorativi dopo la partenza per le spedizioni in Europa.<br />
-                    2. I tempi di consegna indicati sono da intendersi come stime e non costituiscono un impegno vincolante.<br />
-                    3. La POSTAEXPRESS di Solazzo Marco e Solazzo Marco in qualità di titolare, non è responsabile né risponde in alcun modo per fatti, omissioni o inadempimenti del vettore, anche qualora il vettore sia stato scelto unilateralmente.<br />
-                    4. Il Cliente accetta di non esercitare, né consentire al destinatario di esercitare, alcuna azione, anche giudiziale, nei confronti della POSTAEXPRESS di Solazzo Marco, di Solazzo Marco in qualità di titolare, del corriere o di terzi.<br />
-                    5. La POSTAEXPRESS di Solazzo Marco e Solazzo Marco in qualità di titolare, non è in alcun modo responsabile e non risponde per smarrimento, danneggiamento, furto del contenuto, consegna errata, mancata consegna o consegna oltre i termini previsti.<br />
-                    6. Il mittente autorizza la POSTAEXPRESS di Solazzo Marco, in qualità di intermediario, ad acquistare, se necessario, spedizioni tramite piattaforme terze, anche in assenza di contratto diretto con i corrieri selezionati. Il mittente accetta che POSTAEXPRESS agisce esclusivamente come tramite per la gestione della spedizione.<br />
-                    7. Il rimborso per spedizioni danneggiate, smarrite, rubate, consegnate in modo errato o in ritardo viene calcolato in base al peso della merce, con una copertura pari a € 1,00 per ogni chilogrammo di peso lordo.<br />
-                    8. Il mittente della spedizione si assume ogni responsabilità nei confronti di qualunque terzo.
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Apertura modale
-        const openBtn = document.getElementById('openTerms');
-        const modal = document.getElementById('termsModal');
-        const closeBtn = document.getElementById('closeTerms');
-
-        openBtn.addEventListener('click', () => {
-            modal.style.display = 'block';
-            // Per accessibilità: porta il focus nel contenuto del modale
-            modal.querySelector('.modal-content').focus();
-        });
-
-        closeBtn.addEventListener('click', () => {
-            modal.style.display = 'none';
-            openBtn.focus(); // ritorna il focus al link
-        });
-
-        // Chiudi il modale cliccando fuori dal contenuto
-        window.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.style.display = 'none';
-                openBtn.focus();
-            }
-        });
-
-        // Chiudi con ESC
-        window.addEventListener('keydown', (e) => {
-            if(e.key === "Escape" && modal.style.display === 'block') {
-                modal.style.display = 'none';
-                openBtn.focus();
-            }
-        });
-    </script>
 </body>
 </html>
+
+
+      
+       
+       
+      
