@@ -211,13 +211,30 @@
         }
     </style>
 </head>
+    <script>
+    // Mostra automaticamente i termini al clic sulla checkbox
+    document.addEventListener("DOMContentLoaded", function () {
+        const checkbox = document.getElementById("accetto_condizioni");
+        const termini = document.getElementById("termini-content");
+
+        checkbox.addEventListener("change", function () {
+            if (checkbox.checked) {
+                termini.style.display = "block";
+            } else {
+                termini.style.display = "none";
+            }
+        });
+    });
+</script>
+
 <body>
     <!-- Assistenza e informazioni fissa in alto a destra -->
-    <div class="assistance-fixed" aria-label="Assistenza e Informazioni">
-        <p><strong>Per assistenza e informazioni</strong></p>
-        <p><img src="email.png" alt="Icona email" /> spedireveloce2025@libero.it</p>
-        <p><img src="whatsapp.png" alt="Icona WhatsApp" /> +39 329 983 6841</p>
-    </div>
+    <div class="assistance-fixed" style="top: auto; bottom: 20px; right: auto; left: 20px;" aria-label="Assistenza e Informazioni">
+    <p><strong>Assistenza</strong></p>
+    <p><img src="email.png" alt="Icona email" /> spedireveloce2025@libero.it</p>
+    <p><img src="whatsapp.png" alt="Icona WhatsApp" /> +39 329 983 6841</p>
+</div>
+
 
     <div class="container">
         <div id="header-logo">
