@@ -358,16 +358,19 @@
     </div>
 </div>
 
-            <div class="section">
-                <h2>Termini e Condizioni</h2>
-                <div class="terms-container">
-                    <label for="accetto_condizioni">
-                        <input type="checkbox" id="accetto_condizioni" name="accetto_condizioni" required />
-                        Accetto i termini e le condizioni
-                    </label>
-                </div>
-                <div id="termini-content" aria-live="polite">
-                    <p>
+            div class="section">
+    <!-- Scritta cliccabile -->
+    <h2 id="toggle-termini" style="color: #007BFF; cursor: pointer;">Termini e Condizioni</h2>
+    
+    <div class="terms-container">
+        <label for="accetto_condizioni">
+            <input type="checkbox" id="accetto_condizioni" name="accetto_condizioni" required />
+            Accetto i termini e le condizioni
+        </label>
+    </div>
+
+    <div id="termini-content" aria-live="polite" style="display: none; background:#e9ecef; padding: 15px; border-radius: 8px; margin-top: 10px; max-height: 300px; overflow-y: auto; font-size: 14px; line-height: 1.4;">
+        <p>
                         Questo sito Web è gestito da Postaexpress di Solazzo.<br /><br />
                         1. I tempi di consegna stimati sono di 2-4 giorni lavorativi dopo la partenza per le spedizioni in Italia e 3-6 giorni lavorativi dopo la partenza per le spedizioni in Europa.<br />
                         2. I tempi di consegna indicati sono da intendersi come stime e non costituiscono un impegno vincolante.<br />
