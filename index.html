@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8" />
@@ -187,21 +187,22 @@
 
         /* Payment info fixed at bottom right */
        .payment-info {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #007BFF;
-            color: white;
-            padding: 15px 20px;
-            border-radius: 10px;
-            font-size: 14px;
-            max-width: 300px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.2);
-            line-height: 1.4;
-            font-weight: 600;
-            font-family: Arial, sans-serif;
-            z-index: 9999;
-        }
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #007BFF;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    max-width: 300px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    line-height: 1.4;
+    font-weight: 600;
+    font-family: Arial, sans-serif;
+    z-index: 9999;
+}
+
 
         .payment-info strong {
             display: block;
@@ -210,29 +211,30 @@
         }
     </style>
 </head>
-<body>
     <script>
-        // Mostra automaticamente i termini al clic sulla checkbox
-        document.addEventListener("DOMContentLoaded", function () {
-            const checkbox = document.getElementById("accetto_condizioni");
-            const termini = document.getElementById("termini-content");
+    // Mostra automaticamente i termini al clic sulla checkbox
+    document.addEventListener("DOMContentLoaded", function () {
+        const checkbox = document.getElementById("accetto_condizioni");
+        const termini = document.getElementById("termini-content");
 
-            checkbox.addEventListener("change", function () {
-                if (checkbox.checked) {
-                    termini.style.display = "block";
-                } else {
-                    termini.style.display = "none";
-                }
-            });
+        checkbox.addEventListener("change", function () {
+            if (checkbox.checked) {
+                termini.style.display = "block";
+            } else {
+                termini.style.display = "none";
+            }
         });
-    </script>
+    });
+</script>
 
-    <!-- Assistenza e informazioni fissa in basso a sinistra -->
+<body>
+    <!-- Assistenza e informazioni fissa in alto a destra -->
     <div class="assistance-fixed" style="top: auto; bottom: 20px; right: auto; left: 20px;" aria-label="Assistenza e Informazioni">
-        <p><strong>Assistenza</strong></p>
-        <p><img src="email.png" alt="Icona email" /> spedireveloce2025@libero.it</p>
-        <p><img src="whatsapp.png" alt="Icona WhatsApp" /> +39 329 983 6841</p>
-    </div>
+    <p><strong>Assistenza</strong></p>
+    <p><img src="email.png" alt="Icona email" /> spedireveloce2025@libero.it</p>
+    <p><img src="whatsapp.png" alt="Icona WhatsApp" /> +39 329 983 6841</p>
+</div>
+
 
     <div class="container">
         <div id="header-logo">
@@ -243,102 +245,104 @@
             </div>
         </div>
 
-        <form action="https://formsubmit.co/spedireveloce2025@libero.it" method="POST">
-            <div class="form-side-by-side">
-                <div>
-                    <h2>Dati del Mittente</h2>
-                    <label>Nome e Cognome / Ragione Sociale
-                        <input type="text" name="mittente_nome" required />
-                    </label>
-                    <label>Via/Piazza
-                        <input type="text" name="mittente_via" required />
-                    </label>
-                    <label>Numero civico
-                        <input type="text" name="mittente_numero" required />
-                    </label>
-                    <label>CAP
-                        <input type="text" name="mittente_cap" required />
-                    </label>
-                    <label>Città
-                        <input type="text" name="mittente_citta" required />
-                    </label>
-                    <label>Provincia
-                        <input type="text" name="mittente_provincia" required />
-                    </label>
-                    <label>Nazione
-                        <input type="text" name="mittente_nazione" required />
-                    </label>
-                    <label>Email
-                        <input type="email" name="mittente_email" required />
-                    </label>
-                    <label>Telefono / WhatsApp
-                        <input type="text" name="mittente_telefono" required />
-                    </label>
-                    <label>Codice Fiscale / P.IVA
-                        <input type="text" name="mittente_cf" />
-                    </label>
-                    <label>Note per il corriere
-                        <textarea name="mittente_note"></textarea>
-                    </label>
-                </div>
+         <form action="https://formsubmit.co/spedireveloce2025@libero.it" method="POST">
+     <div class="form-side-by-side">
+  <div>
+    <h2>Dati del Mittente</h2>
+    <label>Nome e Cognome / Ragione Sociale
+      <input type="text" name="mittente_nome" required />
+    </label>
+    <label>Via/Piazza
+      <input type="text" name="mittente_via" required />
+    </label>
+    <label>Numero civico
+      <input type="text" name="mittente_numero" required />
+    </label>
+    <label>CAP
+      <input type="text" name="mittente_cap" required />
+    </label>
+    <label>Città
+      <input type="text" name="mittente_citta" required />
+    </label>
+    <label>Provincia
+      <input type="text" name="mittente_provincia" required />
+    </label>
+    <label>Nazione
+      <input type="text" name="mittente_nazione" required />
+    </label>
+    <label>Email
+      <input type="email" name="mittente_email" required />
+    </label>
+    <label>Telefono / WhatsApp
+      <input type="text" name="mittente_telefono" required />
+    </label>
+    <label>Codice Fiscale / P.IVA
+      <input type="text" name="mittente_cf" />
+    </label>
+    <label>Note per il corriere
+      <textarea name="mittente_note"></textarea>
+    </label>
+  </div>
 
-                <div>
-                    <h2>Dati del Destinatario</h2>
-                    <label>Nome e Cognome / Ragione Sociale
-                        <input type="text" name="destinatario_nome" required />
-                    </label>
-                    <label>Via/Piazza
-                        <input type="text" name="destinatario_via" required />
-                    </label>
-                    <label>Numero civico
-                        <input type="text" name="destinatario_numero" required />
-                    </label>
-                    <label>CAP
-                        <input type="text" name="destinatario_cap" required />
-                    </label>
-                    <label>Città
-                        <input type="text" name="destinatario_citta" required />
-                    </label>
-                    <label>Provincia
-                        <input type="text" name="destinatario_provincia" required />
-                    </label>
-                    <label>Nazione
-                        <input type="text" name="destinatario_nazione" required />
-                    </label>
-                    <label>Email
-                        <input type="email" name="destinatario_email" required />
-                    </label>
-                    <label>Telefono / WhatsApp
-                        <input type="text" name="destinatario_telefono" required />
-                    </label>
-                    <label>Note per la consegna
-                        <textarea name="destinatario_note"></textarea>
-                    </label>
-                </div>
-            </div>
+  <div>
+    <h2>Dati del Destinatario</h2>
+    <label>Nome e Cognome / Ragione Sociale
+      <input type="text" name="destinatario_nome" required />
+    </label>
+    <label>Via/Piazza
+      <input type="text" name="destinatario_via" required />
+    </label>
+    <label>Numero civico
+      <input type="text" name="destinatario_numero" required />
+    </label>
+    <label>CAP
+      <input type="text" name="destinatario_cap" required />
+    </label>
+    <label>Città
+      <input type="text" name="destinatario_citta" required />
+    </label>
+    <label>Provincia
+      <input type="text" name="destinatario_provincia" required />
+    </label>
+    <label>Nazione
+      <input type="text" name="destinatario_nazione" required />
+    </label>
+    <label>Email
+      <input type="email" name="destinatario_email" required />
+    </label>
+    <label>Telefono / WhatsApp
+      <input type="text" name="destinatario_telefono" required />
+    </label>
+    <label>Note per la consegna
+      <textarea name="destinatario_note"></textarea>
+    </label>
+  </div>
+</div>
 
-            <div class="section tariffe">
-                <fieldset>
-                    <legend>Dati del pacco</legend>
-                    <div class="dimensioni-container">
-                        <label>Peso (kg):
-                            <input type="number" name="peso" step="0.01" min="0" />
-                        </label>
-                        <label>Lunghezza (cm):
-                            <input type="number" name="lunghezza" step="0.1" min="0" />
-                        </label>
-                        <label>Larghezza (cm):
-                            <input type="number" name="larghezza" step="0.1" min="0" />
-                        </label>
-                        <label>Altezza (cm):
-                            <input type="number" name="altezza" step="0.1" min="0" />
-                        </label>
-                    </div>
-                </fieldset>
-            </div>
+             
 
             <div class="section tariffe">
                 <div>
+<fieldset>
+    <legend>Dati del pacco</legend>
+    <div class="dimensioni-container">
+      <label>Peso (kg):
+        <input type="number" name="peso" step="0.01" min="0">
+      </label>
+      <label>Lunghezza (cm):
+        <input type="number" name="lunghezza" step="0.1" min="0">
+      </label>
+      <label>Larghezza (cm):
+        <input type="number" name="larghezza" step="0.1" min="0">
+      </label>
+      <label>Altezza (cm):
+        <input type="number" name="altezza" step="0.1" min="0">
+      </label>
+    </div>
+  </fieldset>
+
+</body>
+</html>
                     <h2>Tariffe Nazionali (SDA)</h2>
                     <table>
                         <tr><th>Peso</th><th>Prezzo</th></tr>
@@ -389,4 +393,8 @@
         <strong>Metodi di pagamento:</strong>
         Postepay: 5333 1711 6485 4388<br />
         Intestata a: Solazzo Marco<br />
-        Cod
+        Codice fiscale: SLZMRC88D03L112W<br /><br />
+        Bonifico:<br />
+        IT40D0760104600000096256433<br />
+        Intestato a: Postaexpress di Solazzo
+    </div>
