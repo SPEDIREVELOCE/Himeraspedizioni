@@ -120,6 +120,22 @@
             background: #0056b3;
         }
 
+        <div>
+  <h2>Dati del Pacco</h2>
+  <label>Peso (kg)
+    <input type="number" name="peso_kg" step="0.1" min="0" required />
+  </label>
+  <label>Lunghezza (cm)
+    <input type="number" name="lunghezza_cm" min="0" required />
+  </label>
+  <label>Larghezza (cm)
+    <input type="number" name="larghezza_cm" min="0" required />
+  </label>
+  <label>Altezza (cm)
+    <input type="number" name="altezza_cm" min="0" required />
+  </label>
+</div>
+
         /* Casella accetta termini: testo a sinistra, checkbox a destra */
         .terms-container {
             display: flex;
@@ -191,6 +207,7 @@
      <input type="email" name="email" required>
      <button type="submit">Send</button>
 </form>
+        
         /* Payment info fixed at bottom right */
        .payment-info {
     position: fixed;
