@@ -156,62 +156,43 @@
         }
 
         /* Contenitore assistenza in alto a destra, fisso */
-        .assistance-fixed {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: #007BFF;
-            color: white;
-            padding: 15px 20px;
-            border-radius: 10px;
-            font-size: 14px;
-            max-width: 280px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.3);
-            font-weight: 600;
-            font-family: Arial, sans-serif;
-            z-index: 10000;
-        }
-
-        .assistance-fixed p {
-            margin: 6px 0;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .assistance-fixed img {
-            width: 20px;
-            height: 20px;
-            vertical-align: middle;
-        }
-
-        /* Payment info fixed at bottom right */
-       .payment-info {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
+        .assistance-fixed,
+.payment-info {
+    position: static; /* ← elimina il posizionamento fisso */
+    margin-top: 30px;
     background: #007BFF;
     color: white;
     padding: 15px 20px;
     border-radius: 10px;
     font-size: 14px;
-    max-width: 300px;
+    max-width: 900px;
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
     line-height: 1.4;
     font-weight: 600;
     font-family: Arial, sans-serif;
-    z-index: 9999;
 }
 
+.assistance-fixed p,
+.payment-info p {
+    margin: 6px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
 
-        .payment-info strong {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 16px;
-        }
-    </style>
-</head>
-    <script>
+.assistance-fixed img,
+.payment-info img {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
+
+.payment-info strong {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
     // Mostra automaticamente i termini al clic sulla checkbox
     document.addEventListener("DOMContentLoaded", function () {
         const checkbox = document.getElementById("accetto_condizioni");
