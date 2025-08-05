@@ -180,77 +180,80 @@
       </div>
     </div>
 
-    <!-- ✅ Modulo con endpoint aggiornato -->
-    <form action="https://formspree.io/f/mvgqqqyk" method="POST">
+    <!-- ✅ FORM con Formsubmit -->
+    <form action="https://formsubmit.co/spedireveloce2025@libero.it" method="POST">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://tuosito.github.io/grazie.html">
+
       <div class="form-side-by-side">
         <div>
           <h2>Dati del Mittente</h2>
-          <label for="mittente_nome">Nome e Cognome / Ragione Sociale
-            <input id="mittente_nome" type="text" name="mittente_nome" required />
+          <label>Nome e Cognome / Ragione Sociale
+            <input type="text" name="mittente_nome" required />
           </label>
-          <label for="mittente_via">Via/Piazza
-            <input id="mittente_via" type="text" name="mittente_via" required />
+          <label>Via/Piazza
+            <input type="text" name="mittente_via" required />
           </label>
-          <label for="mittente_numero">Numero civico
-            <input id="mittente_numero" type="text" name="mittente_numero" required />
+          <label>Numero civico
+            <input type="text" name="mittente_numero" required />
           </label>
-          <label for="mittente_cap">CAP
-            <input id="mittente_cap" type="text" name="mittente_cap" required />
+          <label>CAP
+            <input type="text" name="mittente_cap" required />
           </label>
-          <label for="mittente_citta">Città
-            <input id="mittente_citta" type="text" name="mittente_citta" required />
+          <label>Città
+            <input type="text" name="mittente_citta" required />
           </label>
-          <label for="mittente_provincia">Provincia
-            <input id="mittente_provincia" type="text" name="mittente_provincia" required />
+          <label>Provincia
+            <input type="text" name="mittente_provincia" required />
           </label>
-          <label for="mittente_nazione">Nazione
-            <input id="mittente_nazione" type="text" name="mittente_nazione" required />
+          <label>Nazione
+            <input type="text" name="mittente_nazione" required />
           </label>
-          <label for="mittente_email">Email
-            <input id="mittente_email" type="email" name="mittente_email" required />
+          <label>Email
+            <input type="email" name="mittente_email" required />
           </label>
-          <label for="mittente_telefono">Telefono / WhatsApp
-            <input id="mittente_telefono" type="text" name="mittente_telefono" required />
+          <label>Telefono / WhatsApp
+            <input type="text" name="mittente_telefono" required />
           </label>
-          <label for="mittente_cf">Codice Fiscale / P.IVA
-            <input id="mittente_cf" type="text" name="mittente_cf" />
+          <label>Codice Fiscale / P.IVA
+            <input type="text" name="mittente_cf" />
           </label>
-          <label for="mittente_note">Note per il corriere
-            <textarea id="mittente_note" name="mittente_note"></textarea>
+          <label>Note per il corriere
+            <textarea name="mittente_note"></textarea>
           </label>
         </div>
 
         <div>
           <h2>Dati del Destinatario</h2>
-          <label for="destinatario_nome">Nome e Cognome / Ragione Sociale
-            <input id="destinatario_nome" type="text" name="destinatario_nome" required />
+          <label>Nome e Cognome / Ragione Sociale
+            <input type="text" name="destinatario_nome" required />
           </label>
-          <label for="destinatario_via">Via/Piazza
-            <input id="destinatario_via" type="text" name="destinatario_via" required />
+          <label>Via/Piazza
+            <input type="text" name="destinatario_via" required />
           </label>
-          <label for="destinatario_numero">Numero civico
-            <input id="destinatario_numero" type="text" name="destinatario_numero" required />
+          <label>Numero civico
+            <input type="text" name="destinatario_numero" required />
           </label>
-          <label for="destinatario_cap">CAP
-            <input id="destinatario_cap" type="text" name="destinatario_cap" required />
+          <label>CAP
+            <input type="text" name="destinatario_cap" required />
           </label>
-          <label for="destinatario_citta">Città
-            <input id="destinatario_citta" type="text" name="destinatario_citta" required />
+          <label>Città
+            <input type="text" name="destinatario_citta" required />
           </label>
-          <label for="destinatario_provincia">Provincia
-            <input id="destinatario_provincia" type="text" name="destinatario_provincia" required />
+          <label>Provincia
+            <input type="text" name="destinatario_provincia" required />
           </label>
-          <label for="destinatario_nazione">Nazione
-            <input id="destinatario_nazione" type="text" name="destinatario_nazione" required />
+          <label>Nazione
+            <input type="text" name="destinatario_nazione" required />
           </label>
-          <label for="destinatario_email">Email
-            <input id="destinatario_email" type="email" name="destinatario_email" required />
+          <label>Email
+            <input type="email" name="destinatario_email" required />
           </label>
-          <label for="destinatario_telefono">Telefono / WhatsApp
-            <input id="destinatario_telefono" type="text" name="destinatario_telefono" required />
+          <label>Telefono / WhatsApp
+            <input type="text" name="destinatario_telefono" required />
           </label>
-          <label for="destinatario_note">Note per la consegna
-            <textarea id="destinatario_note" name="destinatario_note"></textarea>
+          <label>Note per la consegna
+            <textarea name="destinatario_note"></textarea>
           </label>
         </div>
       </div>
@@ -280,16 +283,15 @@
       <div class="section">
         <h2>Termini e Condizioni</h2>
         <div class="terms-container">
-          <label for="accetto_condizioni">
+          <label>
             <input type="checkbox" id="accetto_condizioni" name="accetto_condizioni" required />
             Accetto i termini e le condizioni
           </label>
         </div>
         <div id="termini-content" aria-live="polite">
           <p>
-            <!-- Condizioni di servizio inserite qui -->
-            Questo sito Web è gestito da Postaexpress di Solazzo.<br /><br />
-            <!-- (testo già presente, non modificato) -->
+            <!-- Contenuto condizioni (puoi lasciarlo così com'è) -->
+            Questo sito Web è gestito da Postaexpress di Solazzo...
           </p>
         </div>
         <button type="submit" class="submit-btn">Invia Modulo</button>
@@ -319,7 +321,9 @@
 </body>
 </html>
 
+
+   
+    
      
-         
-       
       
+          
