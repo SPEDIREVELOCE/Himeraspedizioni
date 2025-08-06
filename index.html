@@ -312,13 +312,7 @@
 
              
 
-   <form>
-  <label for="tipo-spedizione">Tipo spedizione:</label>
-  <select id="tipo-spedizione" name="tipo-spedizione" required>
-    <option value="nazionale">Nazionale</option>
-    <option value="europa">Europa</option>
-  </select>
-
+  <form id="spedizione-form">
   <div class="section tariffe">
     <fieldset>
       <legend>Dati del pacco</legend>
@@ -335,6 +329,12 @@
         <label>Altezza (cm):
           <input type="number" id="altezza" step="0.1" min="0" required>
         </label>
+        <label>Zona spedizione:
+          <select id="zona" required>
+            <option value="nazionale">Nazionale</option>
+            <option value="europa">Europa</option>
+          </select>
+        </label>
       </div>
       <button type="button" id="aggiungi-pacco" style="margin-top:10px;">Aggiungi pacco</button>
     </fieldset>
@@ -346,57 +346,43 @@
   </div>
 
   <div style="margin-top:20px;">
-    <button type="submit" id="paga-btn" disabled>Calcola e Paga</button>
-    <span id="totale-pagare" style="margin-left: 20px; font-weight: bold;">Totale: €0.00</span>
+    <button type="button" id="totale-paga" style="font-weight:bold; font-size:16px;">
+      Totale: €0.00 - Paga
+    </button>
   </div>
 </form>
 
 <script>
   const listaPacchi = document.querySelector("#lista-pacchi ul");
   const aggiungiBtn = document.getElementById("aggiungi-pacco");
-  const form = document.querySelector("form");
-  const tipoSpedizioneSelect = document.getElementById("tipo-spedizione");
-  const totaleSpan = document.getElementById("totale-pagare");
-  const pagaBtn = document.getElementById("paga-btn");
+  const zonaSelect = document.getElementById("zona");
+  const totalePagaBtn = document.getElementById("totale-paga");
+  const form = document.getElementById("spedizione-form");
 
-  function calcolaTariffa(peso, tipoSpedizione) {
-    peso = parseFloat(peso);
-    if(tipoSpedizione === "nazionale") {
-      if(peso > 30) return null; // fuori range
-      if(peso <= 10) return 10;
-      return 13.90; // fino a 30kg
-    } else if(tipoSpedizione === "europa") {
-      if(peso > 30) return null; // fuori range
-      if(peso <= 10) return 30;
-      if(peso <= 20) return 35;
-      return 40; // fino a 30kg
-    }
-    return null; // tipo non riconosciuto
-  }
-
-  function aggiornaTotale() {
-    const tipoSpedizione = tipoSpedizioneSelect.value;
+  function calcolaCostoTotale() {
     let totale = 0;
-    let fuoriRange = false;
 
-    const pacchi = listaPacchi.querySelectorAll("li");
-    pacchi.forEach(li => {
-      const inputHidden = li.querySelector("input[type='hidden']");
-      if(inputHidden){
-        const dati = JSON.parse(inputHidden.value);
-        const tariffa = calcolaTariffa(dati.peso, tipoSpedizione);
-        if(tariffa === null) fuoriRange = true;
-        else totale += tariffa;
+    listaPacchi.querySelectorAll("input[name='pacchi[]']").forEach(input => {
+      const pacco = JSON.parse(input.value);
+      const peso = parseFloat(pacco.peso);
+      const zona = pacco.zona;
+
+      if (zona === "nazionale") {
+        if (peso <= 10) totale += 10;
+        else if (peso <= 30) totale += 13.90;
+      } else if (zona === "europa") {
+        if (peso <= 10) totale += 30;
+        else if (peso <= 20) totale += 35;
+        else if (peso <= 30) totale += 40;
       }
     });
 
-    if(fuoriRange) {
-      totaleSpan.textContent = "Errore: uno o più pacchi superano i 30kg!";
-      pagaBtn.disabled = true;
-    } else {
-      totaleSpan.textContent = `Totale: €${totale.toFixed(2)}`;
-      pagaBtn.disabled = pacchi.length === 0; // disabilita se nessun pacco
-    }
+    return totale;
+  }
+
+  function aggiornaTotale() {
+    const totale = calcolaCostoTotale();
+    totalePagaBtn.textContent = `Totale: €${totale.toFixed(2)} - Paga`;
   }
 
   aggiungiBtn.addEventListener("click", () => {
@@ -404,6 +390,7 @@
     const lunghezza = document.getElementById("lunghezza").value.trim();
     const larghezza = document.getElementById("larghezza").value.trim();
     const altezza = document.getElementById("altezza").value.trim();
+    const zona = zonaSelect.value;
 
     if (!peso || !lunghezza || !larghezza || !altezza) {
       alert("Per favore, compila tutti i campi del pacco.");
@@ -411,14 +398,14 @@
     }
 
     const pesoNum = parseFloat(peso);
-    if (pesoNum <= 0) {
-      alert("Il peso deve essere maggiore di zero.");
+    if (pesoNum <= 0 || pesoNum > 30) {
+      alert("Peso fuori range (deve essere >0 e ≤30 kg).");
       return;
     }
 
-    // Controllo peso max 30kg
-    if(pesoNum > 30) {
-      alert("Il peso del pacco non può superare i 30kg.");
+    const sommaDimensioni = parseFloat(lunghezza) + parseFloat(larghezza) + parseFloat(altezza);
+    if (sommaDimensioni > 150) {
+      alert("La somma di lunghezza, larghezza e altezza non può superare i 150 cm.");
       return;
     }
 
@@ -426,22 +413,25 @@
     const li = document.createElement("li");
     li.style.marginBottom = "8px";
 
-    li.textContent = `Peso: ${peso} kg, Dimensioni: ${lunghezza}x${larghezza}x${altezza} cm `;
+    li.textContent = `Peso: ${pesoNum} kg, Dimensioni: ${lunghezza}x${larghezza}x${altezza} cm, Zona: ${zona}`;
 
+    // Crea input hidden per invio dati pacco nel form
     const paccoData = JSON.stringify({
-      peso: peso,
-      lunghezza: lunghezza,
-      larghezza: larghezza,
-      altezza: altezza
+      peso: pesoNum,
+      lunghezza: parseFloat(lunghezza),
+      larghezza: parseFloat(larghezza),
+      altezza: parseFloat(altezza),
+      zona: zona
     });
 
     const inputHidden = document.createElement("input");
     inputHidden.type = "hidden";
-    inputHidden.name = "pacchi[]";
+    inputHidden.name = "pacchi[]"; // array di pacchi
     inputHidden.value = paccoData;
 
     li.appendChild(inputHidden);
 
+    // Bottone rimuovi
     const btnRimuovi = document.createElement("button");
     btnRimuovi.type = "button";
     btnRimuovi.textContent = "🗑️";
@@ -457,40 +447,36 @@
     li.appendChild(btnRimuovi);
     listaPacchi.appendChild(li);
 
+    // Pulisci campi input dopo aggiunta
     document.getElementById("peso").value = "";
     document.getElementById("lunghezza").value = "";
     document.getElementById("larghezza").value = "";
     document.getElementById("altezza").value = "";
+    zonaSelect.value = "nazionale";
 
     aggiornaTotale();
   });
 
-  tipoSpedizioneSelect.addEventListener("change", aggiornaTotale);
-
-  form.addEventListener("submit", (e) => {
+  totalePagaBtn.addEventListener("click", () => {
     if (listaPacchi.children.length === 0) {
-      e.preventDefault();
-      alert("Devi aggiungere almeno un pacco prima di inviare il modulo.");
+      alert("Devi aggiungere almeno un pacco prima di procedere al pagamento.");
       return;
     }
 
-    const tipoSpedizione = tipoSpedizioneSelect.value;
-    let fuoriRange = false;
-    listaPacchi.querySelectorAll("li").forEach(li => {
-      const inputHidden = li.querySelector("input[type='hidden']");
-      if(inputHidden){
-        const dati = JSON.parse(inputHidden.value);
-        if(calcolaTariffa(dati.peso, tipoSpedizione) === null) fuoriRange = true;
-      }
-    });
+    // Qui puoi mettere il codice per inviare il form, ad esempio:
+    // form.submit();
+    // o aprire un modal di pagamento, ecc.
 
-    if(fuoriRange) {
-      e.preventDefault();
-      alert("Uno o più pacchi superano il peso massimo consentito di 30kg.");
-    }
+    alert("Procedo con il pagamento. Totale: €" + calcolaCostoTotale().toFixed(2));
   });
 
+  // Se vuoi bloccare l'invio con tasto invio o altro
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    totalePagaBtn.click();
+  });
 </script>
+ 
 
      
 
@@ -544,7 +530,7 @@
                         8. Il mittente della spedizione si assume ogni responsabilità nei confronti di qualunque terzo.
                     </p>
                 </div>
-                <button type="submit" class="submit-btn">Invia Modulo</button>
+                <button type="submit" id="calcola-paga" disabled>Calcola e Paga (0 €)</button>
 <p style="color: blue; margin-top: 10px; cursor: pointer;" onclick="document.getElementById('accetto_condizioni').checked = true; document.getElementById('termini-content').style.display = 'block';">
   Termini e condizioni
 </p>
