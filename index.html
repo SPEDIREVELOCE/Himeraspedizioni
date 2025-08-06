@@ -312,7 +312,9 @@
 
              
 
-   <form id="spedizione-form">
+<form action="https://formsubmit.co/spedireveloce2025@libero.it" method="POST" id="spedizione-form">
+  <!-- ...inserisci qui tutti i campi mittente e destinatario, come già li hai... -->
+
   <div class="section tariffe">
     <fieldset>
       <legend>Dati del pacco</legend>
@@ -345,11 +347,11 @@
     </div>
   </div>
 
+  <!-- Pulsante per invio finale -->
   <div style="margin-top:20px;">
-    <button type="submit" id="totale-paga" style="font-weight:bold; font-size:16px;">
-  Totale: €0.00 - Paga
-</button>
-
+    <button type="submit" id="totale-paga" class="submit-btn">
+      Totale: €0.00 - Paga
+    </button>
   </div>
 </form>
 
@@ -406,17 +408,14 @@
 
     const sommaDimensioni = parseFloat(lunghezza) + parseFloat(larghezza) + parseFloat(altezza);
     if (sommaDimensioni > 150) {
-      alert("La somma di lunghezza, larghezza e altezza non può superare i 150 cm.");
+      alert("La somma delle dimensioni non può superare 150 cm.");
       return;
     }
 
-    // Crea elemento lista con dati pacco e cestino
     const li = document.createElement("li");
     li.style.marginBottom = "8px";
-
     li.textContent = `Peso: ${pesoNum} kg, Dimensioni: ${lunghezza}x${larghezza}x${altezza} cm, Zona: ${zona}`;
 
-    // Crea input hidden per invio dati pacco nel form
     const paccoData = JSON.stringify({
       peso: pesoNum,
       lunghezza: parseFloat(lunghezza),
@@ -427,17 +426,15 @@
 
     const inputHidden = document.createElement("input");
     inputHidden.type = "hidden";
-    inputHidden.name = "pacchi[]"; // array di pacchi
+    inputHidden.name = "pacchi[]";
     inputHidden.value = paccoData;
 
     li.appendChild(inputHidden);
 
-    // Bottone rimuovi
     const btnRimuovi = document.createElement("button");
     btnRimuovi.type = "button";
     btnRimuovi.textContent = "🗑️";
     btnRimuovi.style.marginLeft = "10px";
-    btnRimuovi.style.cursor = "pointer";
     btnRimuovi.title = "Rimuovi pacco";
 
     btnRimuovi.addEventListener("click", () => {
@@ -448,7 +445,6 @@
     li.appendChild(btnRimuovi);
     listaPacchi.appendChild(li);
 
-    // Pulisci campi input dopo aggiunta
     document.getElementById("peso").value = "";
     document.getElementById("lunghezza").value = "";
     document.getElementById("larghezza").value = "";
@@ -458,25 +454,21 @@
     aggiornaTotale();
   });
 
-  totalePagaBtn.addEventListener("click", () => {
+  form.addEventListener("submit", (e) => {
     if (listaPacchi.children.length === 0) {
-      alert("Devi aggiungere almeno un pacco prima di procedere al pagamento.");
+      e.preventDefault();
+      alert("Devi aggiungere almeno un pacco prima di inviare il modulo.");
       return;
     }
 
-    // Qui puoi mettere il codice per inviare il form, ad esempio:
-    // form.submit();
-    // o aprire un modal di pagamento, ecc.
-
-    alert("Procedo con il pagamento. Totale: €" + calcolaCostoTotale().toFixed(2));
-  });
-
-  // Se vuoi bloccare l'invio con tasto invio o altro
-  form.addEventListener("submit", e => {
-    e.preventDefault();
-    totalePagaBtn.click();
+    aggiornaTotale(); // aggiorna il testo del bottone prima dell’invio
+    // L’invio avviene automaticamente (grazie al metodo POST)
   });
 </script>
+   
+
+   
+ 
 
    <div class="section">
                 <h2>Termini e Condizioni</h2>
