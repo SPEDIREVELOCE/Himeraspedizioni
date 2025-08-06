@@ -312,27 +312,101 @@
 
              
 
-            <div class="section tariffe">
-  <div>
-    <fieldset>
-      <legend>Dati del pacco</legend>
-      <div class="dimensioni-container">
-        <label>Peso (kg):
-          <input type="number" name="peso" step="0.01" min="0" required>
-        </label>
-        <label>Lunghezza (cm):
-          <input type="number" name="lunghezza" step="0.1" min="0" required>
-        </label>
-        <label>Larghezza (cm):
-          <input type="number" name="larghezza" step="0.1" min="0" required>
-        </label>
-        <label>Altezza (cm):
-          <input type="number" name="altezza" step="0.1" min="0" required>
-        </label>
-      </div>
-    </fieldset>
+        <div class="section tariffe">
+  <fieldset>
+    <legend>Dati del pacco</legend>
+    <div class="dimensioni-container">
+      <label>Peso (kg):
+        <input type="number" id="peso" step="0.01" min="0" required>
+      </label>
+      <label>Lunghezza (cm):
+        <input type="number" id="lunghezza" step="0.1" min="0" required>
+      </label>
+      <label>Larghezza (cm):
+        <input type="number" id="larghezza" step="0.1" min="0" required>
+      </label>
+      <label>Altezza (cm):
+        <input type="number" id="altezza" step="0.1" min="0" required>
+      </label>
+    </div>
+    <button type="button" id="aggiungi-pacco" style="margin-top:10px;">Aggiungi pacco</button>
+  </fieldset>
+
+  <div id="lista-pacchi" style="margin-top:20px;">
+    <h3>Pacchi inseriti:</h3>
+    <ul style="list-style:none; padding-left: 0;"></ul>
   </div>
 </div>
+
+<script>
+  const listaPacchi = document.querySelector("#lista-pacchi ul");
+  const aggiungiBtn = document.getElementById("aggiungi-pacco");
+  const form = document.querySelector("form");
+
+  aggiungiBtn.addEventListener("click", () => {
+    const peso = document.getElementById("peso").value.trim();
+    const lunghezza = document.getElementById("lunghezza").value.trim();
+    const larghezza = document.getElementById("larghezza").value.trim();
+    const altezza = document.getElementById("altezza").value.trim();
+
+    if (!peso || !lunghezza || !larghezza || !altezza) {
+      alert("Per favore, compila tutti i campi del pacco.");
+      return;
+    }
+
+    // Crea elemento lista con dati pacco e cestino
+    const li = document.createElement("li");
+    li.style.marginBottom = "8px";
+
+    li.textContent = `Peso: ${peso} kg, Dimensioni: ${lunghezza}x${larghezza}x${altezza} cm `;
+
+    // Crea input hidden per invio dati pacco nel form
+    // Inseriamo tutti i dati in un JSON string per facilità
+    const paccoData = JSON.stringify({
+      peso: peso,
+      lunghezza: lunghezza,
+      larghezza: larghezza,
+      altezza: altezza
+    });
+
+    const inputHidden = document.createElement("input");
+    inputHidden.type = "hidden";
+    inputHidden.name = "pacchi[]"; // array di pacchi
+    inputHidden.value = paccoData;
+
+    li.appendChild(inputHidden);
+
+    // Bottone rimuovi
+    const btnRimuovi = document.createElement("button");
+    btnRimuovi.type = "button";
+    btnRimuovi.textContent = "🗑️";
+    btnRimuovi.style.marginLeft = "10px";
+    btnRimuovi.style.cursor = "pointer";
+    btnRimuovi.title = "Rimuovi pacco";
+
+    btnRimuovi.addEventListener("click", () => {
+      li.remove();
+    });
+
+    li.appendChild(btnRimuovi);
+    listaPacchi.appendChild(li);
+
+    // Pulisci campi input dopo aggiunta
+    document.getElementById("peso").value = "";
+    document.getElementById("lunghezza").value = "";
+    document.getElementById("larghezza").value = "";
+    document.getElementById("altezza").value = "";
+  });
+
+  // Puoi aggiungere un controllo prima di inviare per verificare che ci sia almeno un pacco
+  form.addEventListener("submit", (e) => {
+    if (listaPacchi.children.length === 0) {
+      e.preventDefault();
+      alert("Devi aggiungere almeno un pacco prima di inviare il modulo.");
+    }
+  });
+</script>
+
 
 
 </body>
