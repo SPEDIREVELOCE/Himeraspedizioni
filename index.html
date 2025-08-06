@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8" />
@@ -464,38 +464,33 @@
   });
 
   form.addEventListener("submit", (e) => {
-  const peso = document.getElementById("peso").value.trim();
-  const lunghezza = document.getElementById("lunghezza").value.trim();
-  const larghezza = document.getElementById("larghezza").value.trim();
-  const altezza = document.getElementById("altezza").value.trim();
-  const accetto = document.getElementById("accetto_condizioni").checked;
+    const peso = document.getElementById("peso").value.trim();
+    const lunghezza = document.getElementById("lunghezza").value.trim();
+    const larghezza = document.getElementById("larghezza").value.trim();
+    const altezza = document.getElementById("altezza").value.trim();
+    const accetto = document.getElementById("accetto_condizioni").checked;
 
-  const pacchiAggiunti = listaPacchi.querySelectorAll("li").length;
+    if (listaPacchi.children.length === 0) {
+      e.preventDefault();
+      alert("Devi aggiungere almeno un pacco prima di inviare il modulo.");
+      return;
+    }
 
-  // BLOCCA invio se non ci sono pacchi aggiunti
-  if (pacchiAggiunti === 0) {
-    e.preventDefault();
-    alert("Aggiungi almeno un pacco prima di inviare il modulo.");
-    return;
-  }
+    if (peso || lunghezza || larghezza || altezza) {
+      e.preventDefault();
+      alert("Hai compilato i campi pacco ma non hai cliccato su 'Aggiungi pacco'. Aggiungilo o svuota i campi.");
+      return;
+    }
 
-  // BLOCCA invio se i campi pacco sono compilati ma il pacco non è stato aggiunto
-  if (peso || lunghezza || larghezza || altezza) {
-    e.preventDefault();
-    alert("Hai compilato i campi del pacco ma non l'hai aggiunto. Aggiungi il pacco o svuota i campi.");
-    return;
-  }
+    if (!accetto) {
+      e.preventDefault();
+      alert("Devi accettare i termini e condizioni.");
+      return;
+    }
 
-  // BLOCCA invio se non sono accettati i termini
-  if (!accetto) {
-    e.preventDefault();
-    alert("Devi accettare i termini e condizioni.");
-    return;
-  }
-
-  aggiornaTotale(); // aggiorna il totale prima dell’invio
-});
-
+    aggiornaTotale();
+  });
+</script>
 
  <input type="hidden" name="_next" value="https://spedireveloce.github.io/SPEDIREVELOCE/grazie.html">
                     
@@ -594,6 +589,18 @@
   Termini e condizioni
 </p>       
   
+ 
+ 
+     
+   
+    
+  
+
+    
+    
+    
+
+        
  
   
  
