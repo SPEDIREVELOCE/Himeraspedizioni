@@ -313,6 +313,8 @@
              
 <form action="https://formsubmit.co/spedireveloce2025@libero.it" method="POST" id="spedizione-form">
   <!-- Campi mittente/destinatario vanno qui -->
+<form action="https://formsubmit.co/spedireveloce2025@libero.it" method="POST" id="spedizione-form">
+  <!-- Campi mittente/destinatario vanno qui -->
 
   <div class="section tariffe">
     <fieldset>
@@ -354,8 +356,8 @@
     </label>
   </div>
 
-  <!-- Redirect post-submit -->
-  <input type="hidden" name="_next" value="https://tuosito.it/grazie.html">
+  <!-- Redirect e disattiva CAPTCHA -->
+  <input type="hidden" name="_next" value="https://spedireveloce.github.io/SPEDIREVELOCE/grazie.html">
   <input type="hidden" name="_captcha" value="false">
 
   <!-- Pulsante per invio finale -->
@@ -366,7 +368,6 @@
   </div>
 </form>
 
-<!-- SCRIPT -->
 <script>
   const listaPacchi = document.querySelector("#lista-pacchi ul");
   const aggiungiBtn = document.getElementById("aggiungi-pacco");
@@ -455,6 +456,7 @@
     li.appendChild(btnRimuovi);
     listaPacchi.appendChild(li);
 
+    // Reset campi
     document.getElementById("peso").value = "";
     document.getElementById("lunghezza").value = "";
     document.getElementById("larghezza").value = "";
@@ -473,13 +475,13 @@
 
     if (listaPacchi.children.length === 0) {
       e.preventDefault();
-      alert("Aggiungi almeno un pacco prima di inviare il modulo.");
+      alert("Devi aggiungere almeno un pacco prima di inviare il modulo.");
       return;
     }
 
     if (peso || lunghezza || larghezza || altezza) {
       e.preventDefault();
-      alert("Hai compilato i campi pacco ma non hai aggiunto il pacco. Aggiungilo o svuota i campi.");
+      alert("Hai compilato i campi pacco ma non hai cliccato su 'Aggiungi pacco'. Aggiungilo o svuota i campi.");
       return;
     }
 
@@ -493,6 +495,7 @@
   });
 </script>
 
+ 
    
                  
 </html>
