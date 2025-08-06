@@ -312,7 +312,7 @@
 
              
 
-        <div class="section tariffe">
+   <div class="section tariffe">
   <fieldset>
     <legend>Dati del pacco</legend>
     <div class="dimensioni-container">
@@ -343,6 +343,8 @@
   const aggiungiBtn = document.getElementById("aggiungi-pacco");
   const form = document.querySelector("form");
 
+  let paccoCount = 0; // contatore pacchi per id univoci
+
   aggiungiBtn.addEventListener("click", () => {
     const peso = document.getElementById("peso").value.trim();
     const lunghezza = document.getElementById("lunghezza").value.trim();
@@ -357,6 +359,7 @@
     // Crea elemento lista con dati pacco e cestino
     const li = document.createElement("li");
     li.style.marginBottom = "8px";
+    li.dataset.id = paccoCount;
 
     li.textContent = `Peso: ${peso} kg, Dimensioni: ${lunghezza}x${larghezza}x${altezza} cm `;
 
@@ -371,10 +374,11 @@
 
     const inputHidden = document.createElement("input");
     inputHidden.type = "hidden";
-    inputHidden.name = "pacchi[]"; // array di pacchi
+    inputHidden.name = `pacchi[${paccoCount}]`; // nome univoco per ogni pacco
+    inputHidden.id = `pacco-hidden-${paccoCount}`;
     inputHidden.value = paccoData;
 
-    li.appendChild(inputHidden);
+    form.appendChild(inputHidden);
 
     // Bottone rimuovi
     const btnRimuovi = document.createElement("button");
@@ -385,11 +389,17 @@
     btnRimuovi.title = "Rimuovi pacco";
 
     btnRimuovi.addEventListener("click", () => {
+      // Rimuovi il li dalla lista
       li.remove();
+      // Rimuovi l'input hidden dal form
+      const hiddenInput = document.getElementById(`pacco-hidden-${li.dataset.id}`);
+      if (hiddenInput) hiddenInput.remove();
     });
 
     li.appendChild(btnRimuovi);
     listaPacchi.appendChild(li);
+
+    paccoCount++;
 
     // Pulisci campi input dopo aggiunta
     document.getElementById("peso").value = "";
@@ -398,7 +408,7 @@
     document.getElementById("altezza").value = "";
   });
 
-  // Puoi aggiungere un controllo prima di inviare per verificare che ci sia almeno un pacco
+  // Controllo alla submit: almeno un pacco aggiunto
   form.addEventListener("submit", (e) => {
     if (listaPacchi.children.length === 0) {
       e.preventDefault();
@@ -406,7 +416,7 @@
     }
   });
 </script>
-
+     
 
 
 </body>
