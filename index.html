@@ -530,12 +530,27 @@
                         8. Il mittente della spedizione si assume ogni responsabilità nei confronti di qualunque terzo.
                     </p>
                 </div>
-                <button type="submit" id="calcola-paga" disabled>Calcola e Paga (0 €)</button>
-<p style="color: blue; margin-top: 10px; cursor: pointer;" onclick="document.getElementById('accetto_condizioni').checked = true; document.getElementById('termini-content').style.display = 'block';">
-  Termini e condizioni
-</p>
+       <!-- Checkbox accetta termini -->
+<div style="margin-top: 20px;">
+  <label>
+    <input type="checkbox" id="accetta-condizioni" required>
+    Accetto i <span id="mostra-termini" style="color: blue; cursor: pointer;">termini e condizioni</span>
+  </label>
+</div>
 
-    <div class="container" style="margin-top: 40px; clear: both; font-family: Arial, sans-serif;">
+<!-- Testo nascosto con i termini -->
+<div id="termini-content" style="display: none; margin-top: 10px; font-size: 0.9em; border: 1px solid #ccc; padding: 10px;">
+  <p><strong>Condizioni:</strong> Il servizio di spedizione è soggetto a verifica di disponibilità. Le misure massime consentite non devono superare i 30kg di peso o 150cm di somma dimensioni.</p>
+</div>
+
+<!-- Campo nascosto per il totale -->
+<input type="hidden" name="totale" id="input-totale">
+
+<!-- Pulsante finale -->
+<button type="submit" id="totale-paga" style="margin-top: 20px; font-weight: bold; font-size: 16px;">
+  Totale: €0.00 - Procedi
+</button>
+
   
   <!-- Sezione Assistenza -->
   <div style="background-color: #f5faff; padding: 15px; border: 1px solid #cce5ff; border-radius: 8px; margin-bottom: 30px;">
