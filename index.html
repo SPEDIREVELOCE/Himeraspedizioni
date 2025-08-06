@@ -312,12 +312,38 @@
 
              
 
-  <script>
+   <div class="section tariffe">
+  <fieldset>
+    <legend>Dati del pacco</legend>
+    <div class="dimensioni-container">
+      <label>Peso (kg):
+        <input type="number" id="peso" step="0.01" min="0" required>
+      </label>
+      <label>Lunghezza (cm):
+        <input type="number" id="lunghezza" step="0.1" min="0" required>
+      </label>
+      <label>Larghezza (cm):
+        <input type="number" id="larghezza" step="0.1" min="0" required>
+      </label>
+      <label>Altezza (cm):
+        <input type="number" id="altezza" step="0.1" min="0" required>
+      </label>
+    </div>
+    <button type="button" id="aggiungi-pacco" style="margin-top:10px;">Aggiungi pacco</button>
+  </fieldset>
+
+  <div id="lista-pacchi" style="margin-top:20px;">
+    <h3>Pacchi inseriti:</h3>
+    <ul style="list-style:none; padding-left: 0;"></ul>
+  </div>
+</div>
+
+<script>
   const listaPacchi = document.querySelector("#lista-pacchi ul");
   const aggiungiBtn = document.getElementById("aggiungi-pacco");
   const form = document.querySelector("form");
-  const zonaSelect = document.getElementById("zona");
-  const totalePagaBtn = document.getElementById("totale-paga-btn"); // Bottone totale e paga
+
+  let paccoCount = 0; // contatore pacchi per id univoci
 
   aggiungiBtn.addEventListener("click", () => {
     const peso = document.getElementById("peso").value.trim();
@@ -330,89 +356,66 @@
       return;
     }
 
-    // Verifica somma dimensioni
-    const sommaDimensioni = parseFloat(lunghezza) + parseFloat(larghezza) + parseFloat(altezza);
-    if (sommaDimensioni > 150) {
-      alert("La somma delle dimensioni non può superare i 150 cm.");
-      return;
-    }
-
-    // Crea elemento lista
+    // Crea elemento lista con dati pacco e cestino
     const li = document.createElement("li");
     li.style.marginBottom = "8px";
-    li.textContent = `Peso: ${peso} kg, Dimensioni: ${lunghezza}x${larghezza}x${altezza} cm`;
+    li.dataset.id = paccoCount;
 
-    // Crea input hidden per invio
-    const paccoData = JSON.stringify({ peso, lunghezza, larghezza, altezza });
+    li.textContent = `Peso: ${peso} kg, Dimensioni: ${lunghezza}x${larghezza}x${altezza} cm `;
+
+    // Crea input hidden per invio dati pacco nel form
+    // Inseriamo tutti i dati in un JSON string per facilità
+    const paccoData = JSON.stringify({
+      peso: peso,
+      lunghezza: lunghezza,
+      larghezza: larghezza,
+      altezza: altezza
+    });
+
     const inputHidden = document.createElement("input");
     inputHidden.type = "hidden";
-    inputHidden.name = "pacchi[]";
+    inputHidden.name = `pacchi[${paccoCount}]`; // nome univoco per ogni pacco
+    inputHidden.id = `pacco-hidden-${paccoCount}`;
     inputHidden.value = paccoData;
-    li.appendChild(inputHidden);
+
+    form.appendChild(inputHidden);
 
     // Bottone rimuovi
     const btnRimuovi = document.createElement("button");
     btnRimuovi.type = "button";
     btnRimuovi.textContent = "🗑️";
     btnRimuovi.style.marginLeft = "10px";
+    btnRimuovi.style.cursor = "pointer";
     btnRimuovi.title = "Rimuovi pacco";
-    btnRimuovi.addEventListener("click", () => {
-      li.remove();
-      aggiornaTotale();
-    });
-    li.appendChild(btnRimuovi);
 
+    btnRimuovi.addEventListener("click", () => {
+      // Rimuovi il li dalla lista
+      li.remove();
+      // Rimuovi l'input hidden dal form
+      const hiddenInput = document.getElementById(`pacco-hidden-${li.dataset.id}`);
+      if (hiddenInput) hiddenInput.remove();
+    });
+
+    li.appendChild(btnRimuovi);
     listaPacchi.appendChild(li);
 
-    // Svuota campi
+    paccoCount++;
+
+    // Pulisci campi input dopo aggiunta
     document.getElementById("peso").value = "";
     document.getElementById("lunghezza").value = "";
     document.getElementById("larghezza").value = "";
     document.getElementById("altezza").value = "";
-
-    aggiornaTotale();
   });
 
-  zonaSelect.addEventListener("change", aggiornaTotale);
-
+  // Controllo alla submit: almeno un pacco aggiunto
   form.addEventListener("submit", (e) => {
     if (listaPacchi.children.length === 0) {
       e.preventDefault();
       alert("Devi aggiungere almeno un pacco prima di inviare il modulo.");
     }
   });
-
-  function calcolaCostoTotale() {
-    let totale = 0;
-    const zona = zonaSelect.value;
-
-    listaPacchi.querySelectorAll("input[name='pacchi[]']").forEach(input => {
-      const pacco = JSON.parse(input.value);
-      const peso = parseFloat(pacco.peso);
-
-      if (zona === "nazionale") {
-        if (peso <= 10) totale += 10;
-        else if (peso <= 30) totale += 13.90;
-      } else if (zona === "europa") {
-        if (peso <= 10) totale += 30;
-        else if (peso <= 20) totale += 35;
-        else if (peso <= 30) totale += 40;
-      }
-    });
-
-    return totale;
-  }
-
-  function aggiornaTotale() {
-    const totale = calcolaCostoTotale();
-    if (totalePagaBtn) {
-      totalePagaBtn.textContent = `Totale: €${totale.toFixed(2)} - Procedi`;
-    }
-  }
 </script>
-
- 
-
      
 
 
@@ -465,26 +468,12 @@
                         8. Il mittente della spedizione si assume ogni responsabilità nei confronti di qualunque terzo.
                     </p>
                 </div>
-   <!-- Checkbox accetta termini e link -->
-<div style="margin-top: 20px;">
-  <label>
-    <input type="checkbox" id="accetta-condizioni" required>
-    Accetto i <span id="mostra-termini" style="color: blue; cursor: pointer;">termini e condizioni</span>
-  </label>
-</div>
+                <button type="submit" class="submit-btn">Invia Modulo</button>
+<p style="color: blue; margin-top: 10px; cursor: pointer;" onclick="document.getElementById('accetto_condizioni').checked = true; document.getElementById('termini-content').style.display = 'block';">
+  Termini e condizioni
+</p>
 
-<!-- Contenuto termini nascosto -->
-<div id="termini-content" style="display: none; margin-top: 10px; font-size: 0.9em; border: 1px solid #ccc; padding: 10px;">
-  <p>Testo dei termini e condizioni …</p>
-</div>
-
-<!-- 👇 QUI SOTTO METTI IL BOTTONE FINALE -->
-<div style="margin-top: 20px;">
-  <button type="button" id="totale-paga" style="font-weight: bold; font-size:16px;" disabled>
-    Totale: €0.00 – Procedi
-  </button>
-</div>
-    
+    <div class="container" style="margin-top: 40px; clear: both; font-family: Arial, sans-serif;">
   
   <!-- Sezione Assistenza -->
   <div style="background-color: #f5faff; padding: 15px; border: 1px solid #cce5ff; border-radius: 8px; margin-bottom: 30px;">
@@ -534,3 +523,6 @@
   </div>
 
 </div>
+   
+  
+ 
