@@ -471,17 +471,16 @@
     const accetto = document.getElementById("accetto_condizioni").checked;
 
     if (listaPacchi.children.length === 0) {
-      e.preventDefault();
-      alert("Devi aggiungere almeno un pacco prima di inviare il modulo.");
-      return;
-    }
+    e.preventDefault();
+    alert("Devi aggiungere almeno un pacco prima di inviare il modulo.");
+    return;
+  }
 
-    if (peso || lunghezza || larghezza || altezza) {
-      e.preventDefault();
-      alert("Hai compilato i campi pacco ma non hai cliccato su 'Aggiungi pacco'. Aggiungilo o svuota i campi.");
-      return;
-    }
-
+  if (peso || lunghezza || larghezza || altezza) {
+    e.preventDefault();
+    alert("Hai compilato i campi pacco ma non hai cliccato su 'Aggiungi pacco'. Aggiungilo o svuota i campi.");
+    return;
+  }
     if (!accetto) {
       e.preventDefault();
       alert("Devi accettare i termini e condizioni.");
