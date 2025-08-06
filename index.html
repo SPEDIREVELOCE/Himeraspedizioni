@@ -150,10 +150,11 @@
             line-height: 1.4;
         }
 
-        /* Mostra i termini se checkbox selezionato */
-        #accetto_condizioni:checked ~ #termini-content {
-            display: block;
-        }
+<div class="terms-container">
+    <input type="checkbox" id="accetto_condizioni" name="accetto_condizioni" required />
+    <label for="accetto_condizioni">Accetto i <span id="show-terms" style="color:blue; text-decoration:underline; cursor:pointer;">Termini e Condizioni</span></label>
+</div>
+
 
         /* Contenitore assistenza in alto a destra, fisso */
         .assistance-fixed {
@@ -212,20 +213,21 @@
     </style>
 </head>
     <script>
-    // Mostra automaticamente i termini al clic sulla checkbox
+  <script>
     document.addEventListener("DOMContentLoaded", function () {
-        const checkbox = document.getElementById("accetto_condizioni");
+        const btn = document.getElementById("show-terms");
         const termini = document.getElementById("termini-content");
 
-        checkbox.addEventListener("change", function () {
-            if (checkbox.checked) {
-                termini.style.display = "block";
-            } else {
+        btn.addEventListener("click", function () {
+            if (termini.style.display === "block") {
                 termini.style.display = "none";
+            } else {
+                termini.style.display = "block";
             }
         });
     });
 </script>
+
 
     <div class="container">
         <div id="header-logo">
