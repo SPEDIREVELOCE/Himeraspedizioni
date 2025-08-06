@@ -345,12 +345,6 @@
     </div>
   </div>
 
-  <div style="margin-top:20px;">
-    <button type="button" id="totale-paga" style="font-weight:bold; font-size:16px;">
-      Totale: €0.00 - Paga
-    </button>
-  </div>
-</form>
 
 <script>
   const listaPacchi = document.querySelector("#lista-pacchi ul");
@@ -530,7 +524,7 @@
                         8. Il mittente della spedizione si assume ogni responsabilità nei confronti di qualunque terzo.
                     </p>
                 </div>
-       <!-- Checkbox accetta termini -->
+   <!-- Checkbox accetta termini e link -->
 <div style="margin-top: 20px;">
   <label>
     <input type="checkbox" id="accetta-condizioni" required>
@@ -538,19 +532,18 @@
   </label>
 </div>
 
-<!-- Testo nascosto con i termini -->
+<!-- Contenuto termini nascosto -->
 <div id="termini-content" style="display: none; margin-top: 10px; font-size: 0.9em; border: 1px solid #ccc; padding: 10px;">
-  <p><strong>Condizioni:</strong> Il servizio di spedizione è soggetto a verifica di disponibilità. Le misure massime consentite non devono superare i 30kg di peso o 150cm di somma dimensioni.</p>
+  <p>Testo dei termini e condizioni …</p>
 </div>
 
-<!-- Campo nascosto per il totale -->
-<input type="hidden" name="totale" id="input-totale">
-
-<!-- Pulsante finale -->
-<button type="submit" id="totale-paga" style="margin-top: 20px; font-weight: bold; font-size: 16px;">
-  Totale: €0.00 - Procedi
-</button>
-
+<!-- 👇 QUI SOTTO METTI IL BOTTONE FINALE -->
+<div style="margin-top: 20px;">
+  <button type="button" id="totale-paga" style="font-weight: bold; font-size:16px;" disabled>
+    Totale: €0.00 – Procedi
+  </button>
+</div>
+    
   
   <!-- Sezione Assistenza -->
   <div style="background-color: #f5faff; padding: 15px; border: 1px solid #cce5ff; border-radius: 8px; margin-bottom: 30px;">
