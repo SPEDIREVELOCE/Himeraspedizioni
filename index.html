@@ -213,22 +213,7 @@
     </style>
 </head>
     <script>
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const btn = document.getElementById("show-terms");
-        const termini = document.getElementById("termini-content");
-
-        btn.addEventListener("click", function () {
-            if (termini.style.display === "block") {
-                termini.style.display = "none";
-            } else {
-                termini.style.display = "block";
-            }
-        });
-    });
-</script>
-
-
+  
     <div class="container">
         <div id="header-logo">
             <img src="logo.png" alt="Logo SPEDIREVELOCE" />
@@ -381,6 +366,22 @@
             </div>
         </form>
     </div>
+         <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const btn = document.getElementById("show-terms");
+        const termini = document.getElementById("termini-content");
+
+        btn.addEventListener("click", function () {
+            if (termini.style.display === "block") {
+                termini.style.display = "none";
+            } else {
+                termini.style.display = "block";
+            }
+        });
+    });
+</script>
+</body>
+</html>
 
     <div class="container" style="margin-top: 40px; clear: both;">
   <h2>Assistenza</h2>
