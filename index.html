@@ -313,24 +313,27 @@
              
 
             <div class="section tariffe">
-                <div>
-<fieldset>
-    <legend>Dati del pacco</legend>
-    <div class="dimensioni-container">
-      <label>Peso (kg):
-        <input type="number" name="peso" step="0.01" min="0">
-      </label>
-      <label>Lunghezza (cm):
-        <input type="number" name="lunghezza" step="0.1" min="0">
-      </label>
-      <label>Larghezza (cm):
-        <input type="number" name="larghezza" step="0.1" min="0">
-      </label>
-      <label>Altezza (cm):
-        <input type="number" name="altezza" step="0.1" min="0">
-      </label>
-    </div>
-  </fieldset>
+  <div>
+    <fieldset>
+      <legend>Dati del pacco</legend>
+      <div class="dimensioni-container">
+        <label>Peso (kg):
+          <input type="number" name="peso" step="0.01" min="0" required>
+        </label>
+        <label>Lunghezza (cm):
+          <input type="number" name="lunghezza" step="0.1" min="0" required>
+        </label>
+        <label>Larghezza (cm):
+          <input type="number" name="larghezza" step="0.1" min="0" required>
+        </label>
+        <label>Altezza (cm):
+          <input type="number" name="altezza" step="0.1" min="0" required>
+        </label>
+      </div>
+    </fieldset>
+  </div>
+</div>
+
 
 </body>
 </html>
