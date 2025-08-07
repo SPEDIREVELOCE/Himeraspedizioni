@@ -463,54 +463,6 @@
     aggiornaTotale();
   });
 
-  form.addEventListener("submit", function (e) {
-    const peso = document.getElementById("peso").value.trim();
-    const lunghezza = document.getElementById("lunghezza").value.trim();
-    const larghezza = document.getElementById("larghezza").value.trim();
-    const altezza = document.getElementById("altezza").value.trim();
-    const accetto = document.getElementById("accetto_condizioni").checked;
-
-    const pacchiInseriti = listaPacchi.querySelectorAll("input[name='pacchi[]']").length;
-
-    // Blocco se nessun pacco è stato inserito
-    if (pacchiInseriti === 0) {
-      e.preventDefault();
-      alert("Devi aggiungere almeno un pacco prima di inviare il modulo.");
-      return;
-    }
-
-    // Blocco se ha compilato i campi pacco ma non li ha aggiunti
-    if (peso || lunghezza || larghezza || altezza) {
-      e.preventDefault();
-      alert("Hai compilato i campi del pacco ma non li hai aggiunti. Aggiungilo oppure svuota i campi.");
-      return;
-    }
-
-    // Blocco se non ha accettato i termini
-    if (!accetto) {
-      e.preventDefault();
-      alert("Devi accettare i termini e condizioni.");
-      return;
-    }
-
-    aggiornaTotale();
-  });
-</script>
-
-
-    li.appendChild(btnRimuovi);
-    listaPacchi.appendChild(li);
-
-    // Reset campi
-    document.getElementById("peso").value = "";
-    document.getElementById("lunghezza").value = "";
-    document.getElementById("larghezza").value = "";
-    document.getElementById("altezza").value = "";
-    zonaSelect.value = "nazionale";
-
-    aggiornaTotale();
-  });
-
   form.addEventListener("submit", (e) => {
     const peso = document.getElementById("peso").value.trim();
     const lunghezza = document.getElementById("lunghezza").value.trim();
@@ -519,16 +471,17 @@
     const accetto = document.getElementById("accetto_condizioni").checked;
 
     if (listaPacchi.children.length === 0) {
-    e.preventDefault();
-    alert("Devi aggiungere almeno un pacco prima di inviare il modulo.");
-    return;
-  }
+      e.preventDefault();
+      alert("Devi aggiungere almeno un pacco prima di inviare il modulo.");
+      return;
+    }
 
-  if (peso || lunghezza || larghezza || altezza) {
-    e.preventDefault();
-    alert("Hai compilato i campi pacco ma non hai cliccato su 'Aggiungi pacco'. Aggiungilo o svuota i campi.");
-    return;
-  }
+    if (peso || lunghezza || larghezza || altezza) {
+      e.preventDefault();
+      alert("Hai compilato i campi pacco ma non hai cliccato su 'Aggiungi pacco'. Aggiungilo o svuota i campi.");
+      return;
+    }
+
     if (!accetto) {
       e.preventDefault();
       alert("Devi accettare i termini e condizioni.");
@@ -637,17 +590,4 @@
 </p>       
   
  
- 
-     
-   
-    
   
-
-    
-    
-    
-
-        
- 
-  
- 
