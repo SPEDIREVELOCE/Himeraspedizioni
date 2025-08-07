@@ -338,6 +338,16 @@
       </div>
       <button type="button" id="aggiungi-pacco" style="margin-top:10px;">Aggiungi pacco</button>
     </fieldset>
+      <input type="hidden" id="ordine_id" name="ordine_id" value="" />
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const ordineIdInput = document.getElementById("ordine_id");
+    // Genera un codice ordine, esempio semplice con timestamp
+    const codiceOrdine = 'ORD' + Date.now();
+    ordineIdInput.value = codiceOrdine;
+  });
+</script>
+
 
     <div id="lista-pacchi" style="margin-top:20px;">
       <h3>Pacchi inseriti:</h3>
