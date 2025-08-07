@@ -394,8 +394,8 @@
   <div class="calendar-wrapper">
     <input type="date" id="pickupDate" name="pickupDate" required>
   </div>
+  <div class="calendar-note">⚠️ La data deve essere almeno da domani.</div>
 </div>
-
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -414,10 +414,10 @@
   <!-- Checkbox termini e condizioni -->
   <div style="margin-top: 20px;">
     <label>
-  <input type="checkbox" name="Accetto i termini e condizioni" value="Accettati" required>
-  Accetto i termini e condizioni
-</label>
-
+      <input type="checkbox" id="accetto_condizioni" required>
+      Accetto i termini e condizioni
+    </label>
+  </div>
 
   <!-- Redirect e disattiva CAPTCHA -->
   <input type="hidden" name="_next" value="https://spedireveloce.github.io/SPEDIREVELOCE/grazie.html">
@@ -637,8 +637,8 @@
   </div>
 
 </div></div>
-               <div id="termini-content" style="display: none; opacity: 0; transition: opacity 0.5s ease; margin-top: 10px; padding: 15px; border: 1px solid #ccc; border-radius: 6px; background-color: #f9f9f9; font-size: 14px; line-height: 1.6;">
-  <p>
+                <div id="termini-content" aria-live="polite">
+                    <p>
                         Questo sito Web è gestito da Postaexpress di Solazzo.<br /><br />
                         1. I tempi di consegna stimati sono di 2-4 giorni lavorativi dopo la partenza per le spedizioni in Italia e 3-6 giorni lavorativi dopo la partenza per le spedizioni in Europa.<br />
                         2. I tempi di consegna indicati sono da intendersi come stime e non costituiscono un impegno vincolante.<br />
@@ -649,32 +649,8 @@
                         7. Il rimborso per spedizioni danneggiate, smarrite, rubate, consegnate in modo errato o in ritardo viene calcolato in base al peso della merce, con una copertura pari a € 1,00 per ogni chilogrammo di peso lordo.<br />
                         8. Il mittente della spedizione si assume ogni responsabilità nei confronti di qualunque terzo.
                     </p>
-               </div>
-               <button id="chiudiTermini" style="margin-top: 10px; padding: 6px 12px; background-color: #007BFF; color: white; border: none; border-radius: 4px; cursor: pointer;">
-    Chiudi
-  </button>
-</div>
-
-<!-- ✅ Script -->
-<script>
-  const apriLink = document.getElementById('apriTermini');
-  const chiudiBtn = document.getElementById('chiudiTermini');
-  const terminiBox = document.getElementById('termini-content');
-  const checkbox = document.getElementById('accetto_condizioni');
-
-  apriLink.addEventListener('click', function () {
-    terminiBox.style.display = 'block';
-    setTimeout(() => {
-      terminiBox.style.opacity = '1';
-    }, 10);
-    checkbox.checked = true;
-  });
-
-  chiudiBtn.addEventListener('click', function () {
-    terminiBox.style.opacity = '0';
-    setTimeout(() => {
-      terminiBox.style.display = 'none';
-    }, 300);
-  });
-</script>
-      
+                </div>
+                
+<p style="color: blue; margin-top: 10px; cursor: pointer;" onclick="document.getElementById('accetto_condizioni').checked = true; document.getElementById('termini-content').style.display = 'block';">
+  Termini e condizioni
+</p>    
