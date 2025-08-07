@@ -6,57 +6,92 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f9f9f9;
+      background-color: #f4f4f4;
       padding: 40px;
     }
+
     .container {
       max-width: 800px;
       margin: auto;
-      background-color: #fff;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      background-color: #ffffff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
     }
+
     h1 {
       color: #2c7a2c;
+      margin-bottom: 10px;
     }
+
+    p {
+      line-height: 1.6;
+      color: #333;
+    }
+
     .box {
-      background: #eef6ee;
-      padding: 20px;
-      margin-top: 20px;
-      border-left: 5px solid #2c7a2c;
+      background-color: #eef6ee;
+      padding: 25px;
+      margin-top: 30px;
+      border-left: 6px solid #2c7a2c;
+      border-radius: 6px;
     }
+
     .box h3 {
       margin-top: 0;
+      color: #2c7a2c;
     }
+
     .dati p {
-      margin: 5px 0;
+      margin: 6px 0;
+      font-size: 16px;
+    }
+
+    .thank-you {
+      margin-top: 40px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .ordine-box {
+      margin-top: 25px;
+      padding: 15px;
+      background-color: #fffbe6;
+      border-left: 5px solid #f1c40f;
+      border-radius: 6px;
     }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Grazie per il tuo ordine!</h1>
-    <p>Riceverai tramite <strong>WhatsApp</strong> o <strong>email</strong> la lettera di spedizione da stampare in due copie.</p>
-    <p><strong>IMPORTANTE:</strong> Una copia deve essere <u>attaccata bene sul pacco</u>, in modo che <strong>non si stacchi durante il trasporto</strong>, e l'altra deve essere fatta firmare al corriere come ricevuta del ritiro.</p>
 
+    <p>Riceverai tramite <strong>WhatsApp</strong> o <strong>email</strong> la lettera di spedizione, da stampare in <strong>due copie</strong>.</p>
+    <p><strong>IMPORTANTE:</strong> Una copia deve essere <u>ben attaccata sul pacco</u>, in modo che <strong>non si stacchi durante il trasporto</strong>. L’altra va fatta firmare al corriere come ricevuta del ritiro.</p>
+
+    <div class="ordine-box">
+      <p><strong>Numero ordine:</strong> <span id="numeroOrdineDisplay">In attesa...</span></p>
+    </div>
 
     <div class="box dati">
-      <h3>💳 Dati del pagamento</h3>
+      <h3>💳 Dati per il pagamento</h3>
       <p><strong>Postepay:</strong> 5333 1711 6485 4388</p>
       <p><strong>Intestata a:</strong> Solazzo Marco</p>
       <p><strong>Codice Fiscale:</strong> SLZMRC88D03L112W</p>
       <br />
-      <p><strong>Bonifico:</strong> IT40D0760104600000096256433</p>
+      <p><strong>Bonifico Bancario:</strong> IT40D0760104600000096256433</p>
       <p><strong>Intestato a:</strong> Postaexpress di Solazzo</p>
-      <p><em>Si prega di inserire il il testo "spedizione nome e cognome del mittente" come causale del pagamento.</em></p>
+      <p><em>Si prega di indicare nella causale: <strong>"Spedizione Nome Cognome del mittente"</strong>.</em></p>
     </div>
 
-    <p style="margin-top: 30px;">Grazie per aver scelto il nostro servizio!</p>
+    <p class="thank-you">Grazie per aver scelto il nostro servizio!</p>
   </div>
 
   <script>
     const params = new URLSearchParams(window.location.search);
-
-   
+    const ordine = params.get("ordine") || "Non disponibile";
+    document.getElementById("numeroOrdineDisplay").innerText = ordine;
+  </script>
+</body>
+</html>
 
