@@ -2,39 +2,108 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
-  <title>Grazie!</title>
+  <title>Conferma Spedizione</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 50px;
       background-color: #f9f9f9;
+      padding: 40px;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
     h1 {
-      color: #4CAF50;
+      color: #2c7a2c;
     }
-    p {
-      font-size: 1.2em;
-    }
-    a {
-      color: #333;
-      text-decoration: none;
-      border: 1px solid #333;
-      padding: 8px 15px;
-      border-radius: 5px;
-      display: inline-block;
+    .box {
+      background: #eef6ee;
+      padding: 20px;
       margin-top: 20px;
+      border-left: 5px solid #2c7a2c;
     }
-    a:hover {
-      background-color: #4CAF50;
-      color: white;
-      border-color: #4CAF50;
+    .box h3 {
+      margin-top: 0;
+    }
+    .dati-spedizione p {
+      margin: 5px 0;
     }
   </style>
 </head>
 <body>
-  <h1>Grazie per la tua spedizione!</h1>
-  <p>Abbiamo ricevuto il tuo modulo e ti contatteremo a breve.</p>
-  <a href="index.html">Torna alla home</a>
+  <div class="container">
+    <h1>Grazie per la tua spedizione, <span id="nomeUtente">Utente</span>!</h1>
+    <p>Riceverai tramite <strong>WhatsApp</strong> o <strong>email</strong> la lettera di spedizione da stampare in due copie.</p>
+    <p><strong>IMPORTANTE:</strong> Una copia deve essere <u>attaccata bene sul pacco</u>, in modo che <strong>non si tolga</strong> durante il trasporto l'altra va fatta firmare al corriere al momento del ritiro come ricevuta.</p>
+
+    <div class="box">
+      <h3>📦 Numero Ordine</h3>
+      <p id="numeroOrdine">ORDINE123</p>
+
+      <h3>💳 Dati del pagamento</h3>
+      <p><strong>Postepay:</strong> 5333 1711 6485 4388</p>
+      <p><strong>Intestata a:</strong> Solazzo Marco</p>
+      <p><strong>Codice Fiscale:</strong> SLZMRC88D03L112W</p>
+      <br />
+      <p><strong>Bonifico bancario:</strong> IT40D0760104600000096256433</p>
+      <p><strong>Intestato a:</strong> Postaexpress di Solazzo</p>
+      <br />
+      <p><em>IMPORTANTE:</em> Ricorda di inserire <strong>il numero d'ordine</strong> nella causale del pagamento.</p>
+    </div>
+
+    <div class="box dati-spedizione">
+      <h3>📝 Dati Mittente</h3>
+      <p><strong>Nome:</strong> <span id="mittenteNome">-</span></p>
+      <p><strong>Cognome:</strong> <span id="mittenteCognome">-</span></p>
+      <p><strong>Telefono:</strong> <span id="mittenteTelefono">-</span></p>
+      <p><strong>Email:</strong> <span id="mittenteEmail">-</span></p>
+      <p><strong>Indirizzo:</strong> <span id="mittenteIndirizzo">-</span></p>
+      <p><strong>Città:</strong> <span id="mittenteCitta">-</span></p>
+      <p><strong>CAP:</strong> <span id="mittenteCap">-</span></p>
+    </div>
+
+    <div class="box dati-spedizione">
+      <h3>📝 Dati Destinatario</h3>
+      <p><strong>Nome:</strong> <span id="destinatarioNome">-</span></p>
+      <p><strong>Cognome:</strong> <span id="destinatarioCognome">-</span></p>
+      <p><strong>Telefono:</strong> <span id="destinatarioTelefono">-</span></p>
+      <p><strong>Email:</strong> <span id="destinatarioEmail">-</span></p>
+      <p><strong>Indirizzo:</strong> <span id="destinatarioIndirizzo">-</span></p>
+      <p><strong>Città:</strong> <span id="destinatarioCitta">-</span></p>
+      <p><strong>CAP:</strong> <span id="destinatarioCap">-</span></p>
+    </div>
+
+    <p style="margin-top: 30px;">Grazie per aver scelto il nostro servizio!</p>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+
+    // Dati base
+    document.getElementById("nomeUtente").innerText = params.get("nomeMittente") || "Utente";
+    document.getElementById("numeroOrdine").innerText = params.get("ordine") || "ORDINE123";
+
+    // Dati Mittente
+    document.getElementById("mittenteNome").innerText = params.get("nomeMittente") || "-";
+    document.getElementById("mittenteCognome").innerText = params.get("cognomeMittente") || "-";
+    document.getElementById("mittenteTelefono").innerText = params.get("telefonoMittente") || "-";
+    document.getElementById("mittenteEmail").innerText = params.get("emailMittente") || "-";
+    document.getElementById("mittenteIndirizzo").innerText = params.get("indirizzoMittente") || "-";
+    document.getElementById("mittenteCitta").innerText = params.get("cittaMittente") || "-";
+    document.getElementById("mittenteCap").innerText = params.get("capMittente") || "-";
+
+    // Dati Destinatario
+    document.getElementById("destinatarioNome").innerText = params.get("nomeDestinatario") || "-";
+    document.getElementById("destinatarioCognome").innerText = params.get("cognomeDestinatario") || "-";
+    document.getElementById("destinatarioTelefono").innerText = params.get("telefonoDestinatario") || "-";
+    document.getElementById("destinatarioEmail").innerText = params.get("emailDestinatario") || "-";
+    document.getElementById("destinatarioIndirizzo").innerText = params.get("indirizzoDestinatario") || "-";
+    document.getElementById("destinatarioCitta").innerText = params.get("cittaDestinatario") || "-";
+    document.getElementById("destinatarioCap").innerText = params.get("capDestinatario") || "-";
+  </script>
 </body>
 </html>
