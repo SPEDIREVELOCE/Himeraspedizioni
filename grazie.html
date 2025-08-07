@@ -36,14 +36,15 @@
 </head>
 <body>
   <div class="container">
-    <h1>Grazie per la tua spedizione, <span id="nomeMittenteDisplay">Utente</span>!</h1>
+    <h1>Grazie per il tuo ordine!</h1>
     <p>Riceverai tramite <strong>WhatsApp</strong> o <strong>email</strong> la lettera di spedizione da stampare in due copie.</p>
-    <p><strong>IMPORTANTE:</strong> Una copia deve essere <u>attaccata bene sul pacco</u>, in modo che <strong>non si stacchi durante il trasporto.</p>
+    <p><strong>IMPORTANTE:</strong> Una copia deve essere <u>attaccata bene sul pacco</u>, in modo che <strong>non si stacchi durante il trasporto</strong>, e l'altra deve essere fatta firmare al corriere come ricevuta del ritiro.</p>
 
     <div class="box">
-      <h3>📦 Numero Ordine</h3>
-      <p id="numeroOrdineDisplay">ORDINE123</p>
+      <h3>Numero Ordine: <span id="numeroOrdineDisplay">ORDINE123</span></h3>
+    </div>
 
+    <div class="box dati">
       <h3>💳 Dati del pagamento</h3>
       <p><strong>Postepay:</strong> 5333 1711 6485 4388</p>
       <p><strong>Intestata a:</strong> Solazzo Marco</p>
@@ -52,28 +53,6 @@
       <p><strong>Bonifico:</strong> IT40D0760104600000096256433</p>
       <p><strong>Intestato a:</strong> Postaexpress di Solazzo</p>
       <p><em>Si prega di inserire il numero d’ordine come causale del pagamento.</em></p>
-    </div>
-
-    <div class="box dati">
-      <h3>📝 Dati Mittente</h3>
-      <p><strong>Nome:</strong> <span id="nomeMittente">-</span></p>
-      <p><strong>Cognome:</strong> <span id="cognomeMittente">-</span></p>
-      <p><strong>Telefono:</strong> <span id="telefonoMittente">-</span></p>
-      <p><strong>Email:</strong> <span id="emailMittente">-</span></p>
-      <p><strong>Indirizzo:</strong> <span id="indirizzoMittente">-</span></p>
-      <p><strong>Città:</strong> <span id="cittaMittente">-</span></p>
-      <p><strong>CAP:</strong> <span id="capMittente">-</span></p>
-    </div>
-
-    <div class="box dati">
-      <h3>📬 Dati Destinatario</h3>
-      <p><strong>Nome:</strong> <span id="nomeDestinatario">-</span></p>
-      <p><strong>Cognome:</strong> <span id="cognomeDestinatario">-</span></p>
-      <p><strong>Telefono:</strong> <span id="telefonoDestinatario">-</span></p>
-      <p><strong>Email:</strong> <span id="emailDestinatario">-</span></p>
-      <p><strong>Indirizzo:</strong> <span id="indirizzoDestinatario">-</span></p>
-      <p><strong>Città:</strong> <span id="cittaDestinatario">-</span></p>
-      <p><strong>CAP:</strong> <span id="capDestinatario">-</span></p>
     </div>
 
     <p style="margin-top: 30px;">Grazie per aver scelto il nostro servizio!</p>
@@ -85,25 +64,8 @@
     // Numero ordine
     const ordine = params.get("ordine") || "ORDINE123";
     document.getElementById("numeroOrdineDisplay").innerText = ordine;
-
-    // Mittente
-    document.getElementById("nomeMittenteDisplay").innerText = params.get("nomeMittente") || "Utente";
-    document.getElementById("nomeMittente").innerText = params.get("nomeMittente") || "-";
-    document.getElementById("cognomeMittente").innerText = params.get("cognomeMittente") || "-";
-    document.getElementById("telefonoMittente").innerText = params.get("telefonoMittente") || "-";
-    document.getElementById("emailMittente").innerText = params.get("emailMittente") || "-";
-    document.getElementById("indirizzoMittente").innerText = params.get("indirizzoMittente") || "-";
-    document.getElementById("cittaMittente").innerText = params.get("cittaMittente") || "-";
-    document.getElementById("capMittente").innerText = params.get("capMittente") || "-";
-
-    // Destinatario
-    document.getElementById("nomeDestinatario").innerText = params.get("nomeDestinatario") || "-";
-    document.getElementById("cognomeDestinatario").innerText = params.get("cognomeDestinatario") || "-";
-    document.getElementById("telefonoDestinatario").innerText = params.get("telefonoDestinatario") || "-";
-    document.getElementById("emailDestinatario").innerText = params.get("emailDestinatario") || "-";
-    document.getElementById("indirizzoDestinatario").innerText = params.get("indirizzoDestinatario") || "-";
-    document.getElementById("cittaDestinatario").innerText = params.get("cittaDestinatario") || "-";
-    document.getElementById("capDestinatario").innerText = params.get("capDestinatario") || "-";
   </script>
 </body>
 </html>
+
+   
