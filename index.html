@@ -538,31 +538,37 @@
   });
 
   form.addEventListener("submit", (e) => {
-    const peso = document.getElementById("peso").value.trim();
-    const lunghezza = document.getElementById("lunghezza").value.trim();
-    const larghezza = document.getElementById("larghezza").value.trim();
-    const altezza = document.getElementById("altezza").value.trim();
-    const accetto = document.getElementById("accetto_condizioni").checked;
+  const pacchiAggiunti = listaPacchi.querySelectorAll("li").length > 0;
 
-    if (listaPacchi.children.length === 0) {
-      e.preventDefault();
-      alert("Devi aggiungere almeno un pacco prima di inviare il modulo.");
-      return;
-    }
+  const peso = document.getElementById("peso").value.trim();
+  const lunghezza = document.getElementById("lunghezza").value.trim();
+  const larghezza = document.getElementById("larghezza").value.trim();
+  const altezza = document.getElementById("altezza").value.trim();
 
-    if (peso || lunghezza || larghezza || altezza) {
-      e.preventDefault();
-      alert("Hai compilato i campi pacco ma non hai cliccato su 'Aggiungi pacco'. Aggiungilo o svuota i campi.");
-      return;
-    }
+  const accetto = document.getElementById("accetto_condizioni").checked;
 
-    if (!accetto) {
-      e.preventDefault();
-      alert("Devi accettare i termini e condizioni.");
-      return;
-    }
+  if (!pacchiAggiunti) {
+    e.preventDefault();
+    alert("Devi aggiungere almeno un pacco prima di inviare il modulo.");
+    return;
+  }
 
-    aggiornaTotale();
+  if (peso !== "" || lunghezza !== "" || larghezza !== "" || altezza !== "") {
+    e.preventDefault();
+    alert("Hai compilato i campi pacco ma non hai cliccato su 'Aggiungi pacco'. Aggiungilo o svuota i campi.");
+    return;
+  }
+
+  if (!accetto) {
+    e.preventDefault();
+    alert("Devi accettare i termini e condizioni.");
+    return;
+  }
+
+  aggiornaTotale();
+});
+
+    
   });
 </script>
 
