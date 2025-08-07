@@ -567,7 +567,24 @@
 </script>
 
  <input type="hidden" name="_next" value="https://spedireveloce.github.io/SPEDIREVELOCE/grazie.html">
-                    
+    <!-- il tuo form qui -->
+
+<script>
+  const form = document.querySelector('form');
+  form.addEventListener('submit', function() {
+    const now = new Date();
+    const orderNum = 'ORDINE' + now.getFullYear() + 
+                     ("0"+(now.getMonth()+1)).slice(-2) + 
+                     ("0"+now.getDate()).slice(-2) + '-' +
+                     ("00"+now.getHours()).slice(-2) +
+                     ("00"+now.getMinutes()).slice(-2) +
+                     ("00"+now.getSeconds()).slice(-2);
+    form.querySelector('input[name="ordine"]').value = orderNum;
+  });
+</script>
+
+</body>
+                
 </html>
                <div class="section tariffe" style="display: flex; gap: 20px; flex-wrap: wrap;">
 
