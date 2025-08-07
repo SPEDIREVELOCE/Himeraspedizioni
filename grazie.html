@@ -40,9 +40,6 @@
     <p>Riceverai tramite <strong>WhatsApp</strong> o <strong>email</strong> la lettera di spedizione da stampare in due copie.</p>
     <p><strong>IMPORTANTE:</strong> Una copia deve essere <u>attaccata bene sul pacco</u>, in modo che <strong>non si stacchi durante il trasporto</strong>, e l'altra deve essere fatta firmare al corriere come ricevuta del ritiro.</p>
 
-    <div class="box">
-      <h3>Numero Ordine: <span id="numeroOrdineDisplay">ORDINE123</span></h3>
-    </div>
 
     <div class="box dati">
       <h3>💳 Dati del pagamento</h3>
@@ -52,7 +49,7 @@
       <br />
       <p><strong>Bonifico:</strong> IT40D0760104600000096256433</p>
       <p><strong>Intestato a:</strong> Postaexpress di Solazzo</p>
-      <p><em>Si prega di inserire il numero d’ordine come causale del pagamento.</em></p>
+      <p><em>Si prega di inserire il il testo "spedizione nome e cognome del mittente" come causale del pagamento.</em></p>
     </div>
 
     <p style="margin-top: 30px;">Grazie per aver scelto il nostro servizio!</p>
@@ -61,11 +58,5 @@
   <script>
     const params = new URLSearchParams(window.location.search);
 
-    // Numero ordine
-    const ordine = params.get("ordine") || "ORDINE123";
-    document.getElementById("numeroOrdineDisplay").innerText = ordine;
-  </script>
-</body>
-</html>
-
    
+
