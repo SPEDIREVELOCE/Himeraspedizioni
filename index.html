@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8" />
@@ -236,7 +236,7 @@
             </div>
         </div>
 
-         <form action="https://formsubmit.co/termini.imerese@postaexpress.it" method="POST">
+         <form action="https://formsubmit.co/spedireveloce2025@libero.it" method="POST">
      <div class="form-side-by-side">
   <div>
     <h2>Dati del Mittente</h2>
@@ -310,7 +310,7 @@
   </div>
 </div>
 
-  <form action="https://formsubmit.co/spedireveloce2025@libero.it" method="POST" id="spedizione-form">
+  <form action="https://formsubmit.co/termini.imerese@postaexpress.it" method="POST" id="spedizione-form">
   <!-- Campi mittente/destinatario vanno qui -->
 
   <div class="section tariffe">
@@ -491,38 +491,6 @@
     aggiornaTotale();
   });
 </script>
-<!-- Altri contenuti della pagina... -->
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("spedizione-form");
-    const listaPacchi = document.querySelector("#lista-pacchi ul");
-
-    form.addEventListener("submit", function (e) {
-        // Controlla se almeno un pacco è stato aggiunto
-        const pacchiInseriti = listaPacchi.querySelectorAll("input[name='pacchi[]']").length;
-        if (pacchiInseriti === 0) {
-            e.preventDefault();
-            alert("Devi aggiungere almeno una spedizione prima di inviare il modulo.");
-            return;
-        }
-
-        // Controlla se i campi numerici contengono caratteri non validi
-        const campi = ['peso', 'lunghezza', 'larghezza', 'altezza'];
-        for (let campo of campi) {
-            const val = document.getElementById(campo)?.value.trim();
-            if (val && isNaN(val)) {
-                e.preventDefault();
-                alert("I campi Peso, Lunghezza, Larghezza e Altezza devono contenere solo numeri.");
-                return;
-            }
-        }
-    });
-});
-</script>
-
-</body>
-</html>
 
  <input type="hidden" name="_next" value="https://spedireveloce.github.io/SPEDIREVELOCE/grazie.html">
                     
@@ -623,3 +591,9 @@ document.addEventListener("DOMContentLoaded", function () {
   
  
   
+      
+      
+
+       
+   
+ 
