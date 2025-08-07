@@ -331,21 +331,27 @@
         </label>
         <label>Zona spedizione:
           <select id="zona">
-            <option value="nazionale">Nazionale</option>
-            <option value="europa">Europa</option>
+            <option value="nazionale">Nazionale</required />
+            <option value="europa">Europa</required />
           </select>
         </label>
       </div>
       <button type="button" id="aggiungi-pacco" style="margin-top:10px;">Aggiungi pacco</button>
     </fieldset>
  
-    <div id="lista-pacchi" style="margin-top:20px;">
-      <h3>Pacchi inseriti:</h3>
+    <div id="lista-pacchi" style="margin-top:20px;">required />
+      <h3>Pacchi inseriti:</h3>required />
       <ul style="list-style:none; padding-left: 0;"></ul>
     </div>
   </div>
     <label for="pickupDate">Data ritiro:</label>
 <input type="date" id="pickupDate" name="pickupDate" required>
+      script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('pickupDate').setAttribute('min', today);
+  });
+</script>
 
 
   <!-- Checkbox termini e condizioni -->
