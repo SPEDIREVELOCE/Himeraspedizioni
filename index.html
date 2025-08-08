@@ -436,25 +436,55 @@
     <button type="submit" id="totale-paga" class="submit-btn">
       Totale: €0.00 - Paga
     </button>
-  </div>
-       <div>
-    <label><strong>Preferenza invio:</strong></label><br>
+  div class="preferenza-invio">
+    <span><strong>Preferenza ricezione lettera di vettura</strong></span>
     <label>
-      <input type="radio" name="invio_lettera" value="whatsapp" required> WhatsApp
+      <input type="radio" name="invio_lettera" value="whatsapp" required />
+      WhatsApp
     </label>
     <label>
-      <input type="radio" name="invio_lettera" value="email"> Email
+      <input type="radio" name="invio_lettera" value="email" />
+      Email
     </label>
 
-    <div id="campoWhatsapp" style="display:none; margin-top:8px;">
-      <input type="tel" name="numero_whatsapp" placeholder="+39 333 1234567" pattern="^\+?\d{7,15}$" />
+    <div id="campoWhatsapp" class="campo-dati" style="display:none;">
+      <input
+        type="tel"
+        name="numero_whatsapp"
+        placeholder="+39 333 1234567"
+        pattern="^\+?\d{7,15}$"
+        title="Inserisci un numero valido con prefisso internazionale"
+      />
     </div>
 
-    <div id="campoEmail" style="display:none; margin-top:8px;">
-      <input type="email" name="indirizzo_email" placeholder="esempio@mail.com" />
+    <div id="campoEmail" class="campo-dati" style="display:none;">
+      <input
+        type="email"
+        name="indirizzo_email"
+        placeholder="esempio@mail.com"
+        title="Inserisci un indirizzo email valido"
+      />
     </div>
   </div>
 </div>
+
+<script>
+  const radios = document.querySelectorAll('input[name="invio_lettera"]');
+  const campoWhats = document.getElementById('campoWhatsapp');
+  const campoEmail = document.getElementById('campoEmail');
+
+  radios.forEach(radio => {
+    radio.addEventListener('change', () => {
+      if (radio.value === 'whatsapp') {
+        campoWhats.style.display = 'block';
+        campoEmail.style.display = 'none';
+      } else if (radio.value === 'email') {
+        campoWhats.style.display = 'none';
+        campoEmail.style.display = 'block';
+      }
+    });
+  });
+</script>
 
 <script>
   const radios = document.querySelectorAll('input[name="invio_lettera"]');
