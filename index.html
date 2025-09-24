@@ -1,40 +1,60 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8" />
-<title>HIMERASPEDIZIONI</title>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<style>
-/* ... Tutto il CSS esistente rimane invariato ... */
-
-/* Aggiungo solo lo stile per i pulsanti rimuovi pacco e lista pacchi */
-#lista-pacchi li button {
-    margin-left: 10px;
-    cursor: pointer;
-    background: #dc3545;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 2px 6px;
-}
-
-#lista-pacchi li button:hover {
-    background: #b02a37;
-}
-</style>
+    <meta charset="UTF-8" />
+    <title>HIMERASPEDIZIONI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f9f9f9;
+            color: #333;
+        }
+        h1, h2 { color: #222; }
+        .container { max-width: 900px; margin: auto; background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        #header-logo { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
+        #header-logo img { width: 80px; height: auto; }
+        #header-logo h1 { margin: 0; font-size: 24px; color: #007BFF; }
+        #header-logo p { margin: 4px 0 0; font-size: 16px; color: #555; }
+        .section { margin-bottom: 30px; }
+        .section h2 { border-bottom: 2px solid #ccc; padding-bottom: 5px; }
+        label { display: block; margin-top: 10px; }
+        input, textarea, select { width: 100%; padding: 8px; margin-top: 5px; border-radius: 5px; border: 1px solid #ccc; box-sizing: border-box; }
+        .form-side-by-side { display: flex; gap: 20px; flex-wrap: wrap; }
+        .form-side-by-side > div { flex: 1 1 45%; min-width: 300px; background: #f5f5f5; padding: 15px; border-radius: 8px; box-sizing: border-box; }
+        .tariffe { display: flex; gap: 20px; flex-wrap: wrap; }
+        table { border-collapse: collapse; width: 100%; margin-top: 10px; }
+        th, td { border: 1px solid #aaa; padding: 8px; text-align: center; }
+        .submit-btn { margin-top: 20px; padding: 10px 20px; background: #007BFF; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        .submit-btn:hover { background: #0056b3; }
+        .terms-container { display: flex; align-items: center; gap: 8px; margin-top: 10px; }
+        .terms-container label { cursor: pointer; user-select: none; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        #termini-content { display: none; background: #e9ecef; padding: 15px; border-radius: 8px; margin-top: 10px; max-height: 300px; overflow-y: auto; font-size: 14px; line-height: 1.4; }
+        #accetto_condizioni:checked ~ #termini-content { display: block; }
+        .assistance-fixed { position: fixed; top: 20px; right: 20px; background: #007BFF; color: white; padding: 15px 20px; border-radius: 10px; font-size: 14px; max-width: 280px; box-shadow: 0 0 10px rgba(0,0,0,0.3); font-weight: 600; font-family: Arial, sans-serif; z-index: 10000; }
+        .assistance-fixed p { margin: 6px 0; display: flex; align-items: center; gap: 8px; }
+        .assistance-fixed img { width: 20px; height: 20px; vertical-align: middle; }
+        .payment-info { position: fixed; bottom: 20px; right: 20px; background: #007BFF; color: white; padding: 15px 20px; border-radius: 10px; font-size: 14px; max-width: 300px; box-shadow: 0 0 10px rgba(0,0,0,0.2); line-height: 1.4; font-weight: 600; font-family: Arial, sans-serif; z-index: 9999; }
+        .payment-info strong { display: block; margin-bottom: 8px; font-size: 16px; }
+        .calendar-container { margin-top: 1rem; display: flex; flex-direction: column; max-width: 300px; font-family: Arial, sans-serif; }
+        .calendar-container label { font-weight: bold; margin-bottom: 0.5rem; }
+        .calendar-wrapper { position: relative; }
+        .calendar-wrapper input[type="date"] { width: 100%; padding: 10px 12px 10px 36px; font-size: 16px; border: 1px solid #ccc; border-radius: 6px; appearance: none; }
+        .calendar-wrapper::before { content: "📅"; position: absolute; top: 50%; left: 10px; transform: translateY(-50%); font-size: 18px; pointer-events: none; }
+        .calendar-note { font-size: 12px; color: #666; margin-top: 4px; }
+    </style>
 </head>
 <body>
 <div class="container">
-    <!-- HEADER -->
     <div id="header-logo">
-        <img src="Logo.png" alt="Logo Himeraspedizioni">
+        <img src="Logo.png" alt="Logo Himeraspedizioni" />
         <div>
             <h1>Himeraspedizioni</h1>
             <p>Servizio Spedizioni Online</p>
         </div>
     </div>
 
-    <!-- FORM UNICO -->
     <form action="https://formsubmit.co/termini.imerese@postaexpress.it" method="POST" id="spedizione-form">
         <div class="form-side-by-side">
             <div>
@@ -42,17 +62,36 @@
                 <label>Nome e Cognome / Ragione Sociale <strong>presenti sul citofono</strong>
                     <input type="text" name="mittente_nome" required />
                 </label>
-                <!-- Tutti gli altri campi mittente -->
-                <label>Via/Piazza<input type="text" name="mittente_via" required /></label>
-                <label>Numero civico<input type="text" name="mittente_numero" required /></label>
-                <label>CAP<input type="text" name="mittente_cap" required /></label>
-                <label>Città<input type="text" name="mittente_citta" required /></label>
-                <label>Provincia<input type="text" name="mittente_provincia" required /></label>
-                <label>Nazione<input type="text" name="mittente_nazione" required /></label>
-                <label>Email<input type="email" name="mittente_email"/></label>
-                <label>Telefono / WhatsApp<input type="text" name="mittente_telefono" required /></label>
-                <label>Codice Fiscale / P.IVA<input type="text" name="mittente_cf" /></label>
-                <label>Note per il corriere<textarea name="mittente_note"></textarea></label>
+                <label>Via/Piazza
+                    <input type="text" name="mittente_via" required />
+                </label>
+                <label>Numero civico
+                    <input type="text" name="mittente_numero" required />
+                </label>
+                <label>CAP
+                    <input type="text" name="mittente_cap" required />
+                </label>
+                <label>Città
+                    <input type="text" name="mittente_citta" required />
+                </label>
+                <label>Provincia
+                    <input type="text" name="mittente_provincia" required />
+                </label>
+                <label>Nazione
+                    <input type="text" name="mittente_nazione" required />
+                </label>
+                <label>Email
+                    <input type="email" name="mittente_email"/>
+                </label>
+                <label>Telefono / WhatsApp
+                    <input type="text" name="mittente_telefono" required />
+                </label>
+                <label>Codice Fiscale / P.IVA
+                    <input type="text" name="mittente_cf" />
+                </label>
+                <label>Note per il corriere
+                    <textarea name="mittente_note"></textarea>
+                </label>
             </div>
 
             <div>
@@ -60,69 +99,127 @@
                 <label>Nome e Cognome / Ragione Sociale <strong>presenti sul citofono</strong>
                     <input type="text" name="destinatario_nome" required />
                 </label>
-                <!-- Tutti gli altri campi destinatario -->
-                <label>Via/Piazza<input type="text" name="destinatario_via" required /></label>
-                <label>Numero civico<input type="text" name="destinatario_numero" required /></label>
-                <label>CAP<input type="text" name="destinatario_cap" required /></label>
-                <label>Città<input type="text" name="destinatario_citta" required /></label>
-                <label>Provincia<input type="text" name="destinatario_provincia" required /></label>
-                <label>Nazione<input type="text" name="destinatario_nazione" required /></label>
-                <label>Email<input type="email" name="destinatario_email"/></label>
-                <label>Telefono / WhatsApp<input type="text" name="destinatario_telefono" required /></label>
-                <label>Note per la consegna<textarea name="destinatario_note"></textarea></label>
+                <label>Via/Piazza
+                    <input type="text" name="destinatario_via" required />
+                </label>
+                <label>Numero civico
+                    <input type="text" name="destinatario_numero" required />
+                </label>
+                <label>CAP
+                    <input type="text" name="destinatario_cap" required />
+                </label>
+                <label>Città
+                    <input type="text" name="destinatario_citta" required />
+                </label>
+                <label>Provincia
+                    <input type="text" name="destinatario_provincia" required />
+                </label>
+                <label>Nazione
+                    <input type="text" name="destinatario_nazione" required />
+                </label>
+                <label>Email
+                    <input type="email" name="destinatario_email"/>
+                </label>
+                <label>Telefono / WhatsApp
+                    <input type="text" name="destinatario_telefono" required />
+                </label>
+                <label>Note per la consegna
+                    <textarea name="destinatario_note"></textarea>
+                </label>
             </div>
         </div>
 
-        <!-- DATI PACCHI -->
         <div class="section tariffe">
             <fieldset>
                 <legend>Dati del pacco</legend>
-                <label>Peso (kg)<input type="number" id="peso" step="0.01" min="0"></label>
-                <label>Lunghezza (cm)<input type="number" id="lunghezza" step="0.1" min="0"></label>
-                <label>Larghezza (cm)<input type="number" id="larghezza" step="0.1" min="0"></label>
-                <label>Altezza (cm)<input type="number" id="altezza" step="0.1" min="0"></label>
-                <label>Zona spedizione
-                    <select id="zona">
-                        <option value="nazionale">Nazionale</option>
-                        <option value="europa">Europa</option>
-                    </select>
-                </label>
-                <button type="button" id="aggiungi-pacco">Aggiungi pacco</button>
+                <div class="dimensioni-container">
+                    <label>Peso (kg):
+                        <input type="number" id="peso" step="0.01" min="0">
+                    </label>
+                    <label>Lunghezza (cm):
+                        <input type="number" id="lunghezza" step="0.1" min="0">
+                    </label>
+                    <label>Larghezza (cm):
+                        <input type="number" id="larghezza" step="0.1" min="0">
+                    </label>
+                    <label>Altezza (cm):
+                        <input type="number" id="altezza" step="0.1" min="0">
+                    </label>
+                    <label>Zona spedizione:
+                        <select id="zona">
+                            <option value="nazionale">Nazionale</option>
+                            <option value="europa">Europa</option>
+                        </select>
+                    </label>
+                </div>
+                <button type="button" id="aggiungi-pacco" style="margin-top:10px;">Aggiungi pacco</button>
             </fieldset>
 
-            <div id="lista-pacchi">
+            <input type="hidden" id="ordine_id" name="ordine_id" value="" />
+            <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                    const ordineIdInput = document.getElementById("ordine_id");
+                    const codiceOrdine = 'ORD' + Date.now();
+                    ordineIdInput.value = codiceOrdine;
+
+                    const dateInput = document.getElementById('pickupDate');
+                    if(dateInput){
+                        const today = new Date();
+                        const tomorrow = new Date(today);
+                        tomorrow.setDate(today.getDate() + 1);
+                        dateInput.min = tomorrow.toISOString().split('T')[0];
+                    }
+                });
+            </script>
+
+            <div id="lista-pacchi" style="margin-top:20px;">
                 <h3>Pacchi inseriti:</h3>
-                <ul></ul>
+                <ul style="list-style:none; padding-left: 0;"></ul>
             </div>
         </div>
 
-        <!-- Checkbox termini -->
+        <div class="calendar-container">
+            <label for="pickupDate">Seleziona la data del ritiro</label>
+            <div class="calendar-wrapper">
+                <input type="date" id="pickupDate" name="pickupDate" required>
+            </div>
+        </div>
+
+        <!-- Checkbox termini e condizioni -->
         <label>
             <input type="checkbox" id="accetto_condizioni" name="accetto_condizioni" value="Accetto i termini e condizioni" required>
             Accetto i termini e condizioni
         </label>
 
-        <!-- Hidden FormSubmit -->
+        <!-- Hidden per redirect e disattivazione CAPTCHA -->
         <input type="hidden" name="_next" value="https://spedireveloce.github.io/SPEDIREVELOCE/grazie.html">
         <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="ordine_id" id="ordine_id" value="">
-        <input type="hidden" name="totale_pagato" id="totale_pagato" value="">
 
-        <button type="submit" id="totale-paga" class="submit-btn">Totale: €0.00 - Paga</button>
+        <div style="margin-top:20px;">
+            <button type="submit" id="totale-paga" class="submit-btn">Totale: €0.00 - Paga</button>
+        </div>
     </form>
 
+    <div id="termini-content" aria-live="polite">
+        <p>
+            Questo sito Web è gestito da Postaexpress di Solazzo.<br /><br />
+            1. I tempi di consegna stimati sono di 2-4 giorni lavorativi per Italia e 3-6 per Europa.<br />
+            2. I tempi sono stime e non vincolanti.<br />
+            3. POSTAEXPRESS non è responsabile per corrieri o terzi.<br />
+            4. Il cliente rinuncia a qualsiasi azione legale contro POSTAEXPRESS.<br />
+            5. POSTAEXPRESS declina responsabilità su smarrimento, danneggiamento, furto, consegna errata o tardiva.<br />
+            6. POSTAEXPRESS agisce come intermediario per servizi di spedizione.<br />
+            7. Rimborso: €1/kg per merce danneggiata o smarrita.<br />
+            8. Il mittente si assume ogni responsabilità verso terzi.
+        </p>
+    </div>
 </div>
 
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-    const ordineIdInput = document.getElementById("ordine_id");
-    ordineIdInput.value = 'ORD' + Date.now();
-
     const listaPacchi = document.querySelector("#lista-pacchi ul");
     const aggiungiBtn = document.getElementById("aggiungi-pacco");
     const zonaSelect = document.getElementById("zona");
     const totalePagaBtn = document.getElementById("totale-paga");
-    const totaleInput = document.getElementById("totale_pagato");
     const form = document.getElementById("spedizione-form");
 
     function calcolaCostoTotale() {
@@ -146,7 +243,6 @@ document.addEventListener("DOMContentLoaded", () => {
     function aggiornaTotale() {
         const totale = calcolaCostoTotale();
         totalePagaBtn.textContent = `Totale: €${totale.toFixed(2)} - Paga`;
-        totaleInput.value = totale.toFixed(2);
     }
 
     aggiungiBtn.addEventListener("click", () => {
@@ -161,10 +257,23 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        const li = document.createElement("li");
-        li.textContent = `Peso: ${peso} kg, Dimensioni: ${lunghezza}x${larghezza}x${altezza} cm, Zona: ${zona}`;
+        const pesoNum = parseFloat(peso);
+        if (pesoNum <= 0 || pesoNum > 30) {
+            alert("Peso fuori range (deve essere >0 e ≤30 kg).");
+            return;
+        }
 
-        const paccoData = JSON.stringify({peso, lunghezza, larghezza, altezza, zona});
+        const sommaDimensioni = parseFloat(lunghezza) + parseFloat(larghezza) + parseFloat(altezza);
+        if (sommaDimensioni > 150) {
+            alert("La somma delle dimensioni non può superare 150 cm.");
+            return;
+        }
+
+        const li = document.createElement("li");
+        li.style.marginBottom = "8px";
+        li.textContent = `Peso: ${pesoNum} kg, Dimensioni: ${lunghezza}x${larghezza}x${altezza} cm, Zona: ${zona}`;
+
+        const paccoData = JSON.stringify({ peso: pesoNum, lunghezza: parseFloat(lunghezza), larghezza: parseFloat(larghezza), altezza: parseFloat(altezza), zona: zona });
         const inputHidden = document.createElement("input");
         inputHidden.type = "hidden";
         inputHidden.name = "pacchi[]";
@@ -174,12 +283,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const btnRimuovi = document.createElement("button");
         btnRimuovi.type = "button";
         btnRimuovi.textContent = "🗑️";
+        btnRimuovi.style.marginLeft = "10px";
+        btnRimuovi.title = "Rimuovi pacco";
         btnRimuovi.addEventListener("click", () => { li.remove(); aggiornaTotale(); });
         li.appendChild(btnRimuovi);
 
         listaPacchi.appendChild(li);
 
-        // reset campi
         document.getElementById("peso").value = "";
         document.getElementById("lunghezza").value = "";
         document.getElementById("larghezza").value = "";
@@ -190,19 +300,32 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     form.addEventListener("submit", (e) => {
+        const peso = document.getElementById("peso").value.trim();
+        const lunghezza = document.getElementById("lunghezza").value.trim();
+        const larghezza = document.getElementById("larghezza").value.trim();
+        const altezza = document.getElementById("altezza").value.trim();
+        const accetto = document.getElementById("accetto_condizioni").checked;
+
         if (listaPacchi.children.length === 0) {
             e.preventDefault();
             alert("Devi aggiungere almeno un pacco prima di inviare il modulo.");
             return;
         }
-        if (!document.getElementById("accetto_condizioni").checked) {
+
+        if (peso || lunghezza || larghezza || altezza) {
+            e.preventDefault();
+            alert("Hai compilato i campi pacco ma non hai cliccato su 'Aggiungi pacco'. Aggiungilo o svuota i campi.");
+            return;
+        }
+
+        if (!accetto) {
             e.preventDefault();
             alert("Devi accettare i termini e condizioni.");
             return;
         }
+
         aggiornaTotale();
     });
-});
 </script>
 </body>
 </html>
