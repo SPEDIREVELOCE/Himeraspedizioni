@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8" />
-    <title>Himeraspedizioni</title>
+    <title>HIMERASPEDIZIONI</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
         body {
@@ -226,7 +226,9 @@
         });
     });
 </script>
-<div id="header-Logo" style="display: flex; align-items: center;">
+
+    <div class="container">
+        <div id="header-Logo" style="display: flex; align-items: center;">
     <img src="Logo.png" alt="Logo Himeraspedizioni" style="width: 80px; height: auto; margin-right: 10px;" />
     <div>
         <h1 style="margin: 0;">Himeraspedizioni</h1>
@@ -234,7 +236,8 @@
     </div>
 </div>
 
-       <form action="https://formsubmit.co/termini.imerese@postaexpress.it" method="POST">
+
+         <form action="https://formsubmit.co/termini.imerese@postaexpress.it" method="POST">
      <div class="form-side-by-side">
   <div>
     <h2>Dati del Mittente</h2>
@@ -465,7 +468,7 @@
 
   function aggiornaTotale() {
     const totale = calcolaCostoTotale();
-    totalePagaBtn.textContent = Totale: €${totale.toFixed(2)} - Paga;
+    totalePagaBtn.textContent = `Totale: €${totale.toFixed(2)} - Paga`;
   }
 
   aggiungiBtn.addEventListener("click", () => {
@@ -494,7 +497,7 @@
 
     const li = document.createElement("li");
     li.style.marginBottom = "8px";
-    li.textContent = Peso: ${pesoNum} kg, Dimensioni: ${lunghezza}x${larghezza}x${altezza} cm, Zona: ${zona};
+    li.textContent = `Peso: ${pesoNum} kg, Dimensioni: ${lunghezza}x${larghezza}x${altezza} cm, Zona: ${zona}`;
 
     const paccoData = JSON.stringify({
       peso: pesoNum,
@@ -513,7 +516,7 @@
 
     const btnRimuovi = document.createElement("button");
     btnRimuovi.type = "button";
-    btnRimuovi.textContent = "🗑";
+    btnRimuovi.textContent = "🗑️";
     btnRimuovi.style.marginLeft = "10px";
     btnRimuovi.title = "Rimuovi pacco";
 
@@ -668,4 +671,4 @@
                 
 <p style="color: blue; margin-top: 10px; cursor: pointer;" onclick="document.getElementById('accetto_condizioni').checked = true; document.getElementById('termini-content').style.display = 'block';">
   Termini e condizioni
-</p>    **
+</p>    
