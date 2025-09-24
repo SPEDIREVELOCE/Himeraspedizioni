@@ -1,8 +1,9 @@
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8" />
-    <title>SPEDIREVELOCE</title>
+    <title>HIMERASPEDIZIONI</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
         body {
@@ -228,19 +229,20 @@
 </script>
 
     <div class="container">
-        <div id="header-logo">
-            <img src="logo.png" alt="Logo SPEDIREVELOCE" />
-            <div>
-                <h1>SPEDIREVELOCE</h1>
-                <p>Modulo Spedizione</p>
-            </div>
-        </div>
+        <div id="header-Logo" style="display: flex; align-items: center;">
+    <img src="Logo.png" alt="Logo Himeraspedizioni" style="width: 80px; height: auto; margin-right: 10px;" />
+    <div>
+        <h1 style="margin: 0;">Himeraspedizioni</h1>
+        <p style="margin: 0; font-size: 14px; color: #555;">Servizio Spedizioni Online</p>
+    </div>
+</div>
+
 
          <form action="https://formsubmit.co/termini.imerese@postaexpress.it" method="POST">
      <div class="form-side-by-side">
   <div>
     <h2>Dati del Mittente</h2>
-    <label>Nome e Cognome / Ragione Sociale
+    <label>Nome e Cognome / Ragione Sociale <strong>presenti sul citofono</strong>
       <input type="text" name="mittente_nome" required />
     </label>
     <label>Via/Piazza
@@ -277,7 +279,7 @@
 
   <div>
     <h2>Dati del Destinatario</h2>
-    <label>Nome e Cognome / Ragione Sociale
+    <label>Nome e Cognome / Ragione Sociale <strong>presenti sul citofono</strong>
       <input type="text" name="destinatario_nome" required />
     </label>
     <label>Via/Piazza
@@ -428,7 +430,7 @@
  </div>
 
   <!-- Redirect e disattiva CAPTCHA -->
-  <input type="hidden" name="_next" value="https://spedireveloce.github.io/SPEDIREVELOCE/grazie.html">
+  <input type="hidden" name="_next" value="https://spedireveloce.github.io/Himeraspedizioni/grazie.html">
   <input type="hidden" name="_captcha" value="false">
 
   <!-- Pulsante per invio finale -->
@@ -599,6 +601,8 @@
   
   <!-- Sezione Assistenza e Pagamenti -->
 <div class="info-boxes" style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 40px; font-family: Arial, sans-serif;">
+<!-- Sezione Assistenza e Pagamenti -->
+<div class="info-boxes" style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 40px; font-family: Arial, sans-serif;">
 
   <!-- Sezione Assistenza e Pagamenti -->
 <div class="info-boxes" style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 40px; font-family: Arial, sans-serif;">
@@ -619,25 +623,37 @@
   </div>
 
   <!-- Pagamenti -->
-  <div class="info-card" style="flex: 1 1 300px; background-color: #f5faff; padding: 20px; border: 1px solid #cce5ff; border-radius: 12px;">
-    <h2 style="color: #007BFF; margin-top: 0; font-size: 20px;">💳 Metodi di pagamento</h2>
+<div class="info-card" style="flex: 1 1 100%; background-color: #f5faff; padding: 20px; border: 1px solid #cce5ff; border-radius: 12px;">
+  <h2 style="color: #007BFF; margin-top: 0; font-size: 20px;">💳 Metodi di pagamento</h2>
+
+  <!-- Contenitore affiancato -->
+  <div style="display: flex; flex-wrap: wrap; gap: 20px;">
 
     <!-- Postepay -->
-    <div style="margin-bottom: 20px; padding: 12px; border-left: 4px solid #007BFF; background: #ffffff; border-radius: 8px;">
+    <div style="flex: 1 1 300px; padding: 12px; border-left: 4px solid #007BFF; background: #ffffff; border-radius: 8px;">
       <h3 style="margin-top: 0; color: #007BFF;">📦 Postepay</h3>
       <p style="margin: 6px 0;"><strong>Numero:</strong><br><span style="color: #006400;">5333 1711 6485 4388</span></p>
       <p style="margin: 6px 0;"><strong>Intestata a:</strong><br>Solazzo Marco</p>
       <p style="margin: 6px 0;"><strong>Codice Fiscale:</strong><br>SLZMRC88D03L112W</p>
+     <em>inviare l'attestazione di pagamento tramite WhatsApp al 3299836841 Causale: <strong>"Pagamento spedizione Nome Cognome del mittente e data dell'ordine"</strong>.</em></p>
     </div>
+        
+   
 
     <!-- Bonifico -->
-    <div style="padding: 12px; border-left: 4px solid #28a745; background: #ffffff; border-radius: 8px;">
+    <div style="flex: 1 1 300px; padding: 12px; border-left: 4px solid #28a745; background: #ffffff; border-radius: 8px;">
       <h3 style="margin-top: 0; color: #28a745;">🏦 Bonifico Bancario</h3>
       <p style="margin: 6px 0;"><strong>IBAN:</strong><br><span style="color: #006400;">IT40D0760104600000096256433</span></p>
-      <p style="margin: 6px 0;"><strong>Intestato a:</strong><br>Solazzo Marco </p>
+      <p style="margin: 6px 0;"><strong>Intestato a:</strong><br>Solazzo Marco</p>
+        <em>inviare l'attestazione di pagamento tramite WhatsApp al 3299836841 Causale bonifico: <strong>"Pagamento spedizione Nome Cognome del mittente e data dell'ordine"</strong>.</em></p>
     </div>
+
   </div>
 </div>
+
+
+
+ 
 
 
                <div id="termini-content" aria-live="polite">
