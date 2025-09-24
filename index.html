@@ -566,6 +566,25 @@
 
     aggiornaTotale();
   });
+<script>
+document.getElementById("spedizione-form").addEventListener("submit", function(e) {
+    const listaPacchi = document.querySelector("#lista-pacchi ul");
+    const accetto = document.getElementById("accetto_condizioni").checked;
+
+    // Controllo se ci sono pacchi
+    if (listaPacchi.children.length === 0) {
+        e.preventDefault();
+        alert("Devi aggiungere almeno un pacco prima di inviare il modulo.");
+        return;
+    }
+
+    // Controllo checkbox termini
+    if (!accetto) {
+        e.preventDefault();
+        alert("Devi accettare i termini e condizioni.");
+        return;
+    }
+});
 </script>
 
  <input type="hidden" name="_next" value="https://spedireveloce.github.io/SPEDIREVELOCE/grazie.html">
