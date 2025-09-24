@@ -472,6 +472,37 @@
     totalePagaBtn.textContent = `Totale: €${totale.toFixed(2)} - Paga`;
   }
 
+  <script>
+  const listaPacchi = document.querySelector("#lista-pacchi ul");
+  const aggiungiBtn = document.getElementById("aggiungi-pacco");
+  const zonaSelect = document.getElementById("zona");
+  const totalePagaBtn = document.getElementById("totale-paga");
+  const form = document.getElementById("spedizione-form");
+
+  function calcolaCostoTotale() {
+    let totale = 0;
+    listaPacchi.querySelectorAll("input[name='pacchi[]']").forEach(input => {
+      const pacco = JSON.parse(input.value);
+      const peso = parseFloat(pacco.peso);
+      const zona = pacco.zona;
+
+      if (zona === "nazionale") {
+        if (peso <= 10) totale += 10;
+        else if (peso <= 30) totale += 13.90;
+      } else if (zona === "europa") {
+        if (peso <= 10) totale += 30;
+        else if (peso <= 20) totale += 35;
+        else if (peso <= 30) totale += 40;
+      }
+    });
+    return totale;
+  }
+
+  function aggiornaTotale() {
+    const totale = calcolaCostoTotale();
+    totalePagaBtn.textContent = `Totale: €${totale.toFixed(2)} - Paga`;
+  }
+
   aggiungiBtn.addEventListener("click", () => {
     const peso = document.getElementById("peso").value.trim();
     const lunghezza = document.getElementById("lunghezza").value.trim();
@@ -512,7 +543,6 @@
     inputHidden.type = "hidden";
     inputHidden.name = "pacchi[]";
     inputHidden.value = paccoData;
-
     li.appendChild(inputHidden);
 
     const btnRimuovi = document.createElement("button");
@@ -546,34 +576,17 @@
     const altezza = document.getElementById("altezza").value.trim();
     const accetto = document.getElementById("accetto_condizioni").checked;
 
-    if (listaPacchi.children.length === 0) {
-      e.preventDefault();
-      alert("Devi aggiungere almeno un pacco prima di inviare il modulo.");
-      return;
-    }
-
-    if (peso || lunghezza || larghezza || altezza) {
-      e.preventDefault();
-      alert("Hai compilato i campi pacco ma non hai cliccato su 'Aggiungi pacco'. Aggiungilo o svuota i campi.");
-      return;
-    }
-
-    if (!accetto) {
-      e.preventDefault();
-      alert("Devi accettare i termini e condizioni.");
-      return;
-    }
-
-    aggiornaTotale();
-  
-document.getElementById("spedizione-form").addEventListener("submit", function(e) {
-    const listaPacchi = document.querySelector("#lista-pacchi ul");
-    const accetto = document.getElementById("accetto_condizioni").checked;
-
     // Controllo se ci sono pacchi
     if (listaPacchi.children.length === 0) {
         e.preventDefault();
         alert("Devi aggiungere almeno un pacco prima di inviare il modulo.");
+        return;
+    }
+
+    // Controllo se ci sono campi del pacco compilati ma non aggiunti
+    if (peso || lunghezza || larghezza || altezza) {
+        e.preventDefault();
+        alert("Hai compilato i campi pacco ma non hai cliccato su 'Aggiungi pacco'. Aggiungilo o svuota i campi.");
         return;
     }
 
@@ -583,8 +596,12 @@ document.getElementById("spedizione-form").addEventListener("submit", function(e
         alert("Devi accettare i termini e condizioni.");
         return;
     }
-});
+
+    // Aggiorna totale prima dell'invio
+    aggiornaTotale();
+  });
 </script>
+
 
  <input type="hidden" name="_next" value="https://spedireveloce.github.io/SPEDIREVELOCE/grazie.html">
                     
